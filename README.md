@@ -8,7 +8,7 @@ To use, install nodejs and run `npm install` in the folder where the script `mai
 
 **Hopefully all done within a month, faster with some help :)**
 
-* Current: **V1.0** core server code - logs the results to the browser. No bot functionailty. No frontend.
+* Current: **V1.0** core server code - logs the results to the terminal. No bot functionailty. No frontend.
 * **V1.1** - create api endpoints and display data on a minimal front end.
 * **V1.2** - host server and implement websockets.
 * **V1.5** - account login/signup functionialty with passport - allow users to add their own markets / disable markets.
@@ -48,9 +48,7 @@ Currently you will have to add an object in the main.js. I am updating the proje
 
 ## Built and deployed with
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Node.JS](https://nodejs.org) - For the backend
 
 ## Contributing
 
