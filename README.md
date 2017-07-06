@@ -22,7 +22,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Required: Node.js ** ^ V8.0.0** this program uses ES7 features such as async/await and requires a newer version of node.
+Required: Node.js **^ V8.0.0** this program uses ES7 features such as async/await and requires a newer version of node.
 
 ### Installing
 
