@@ -80,7 +80,7 @@ function computePrices(data) {
 
 
 
-async function main(quoteBookSettings) {
+(async function main() {
     // console.log("heloo");
     let arrayOfRequests = [];
 
@@ -91,14 +91,11 @@ async function main(quoteBookSettings) {
     await Promise.all(arrayOfRequests.map(p => p.catch(e => e)))
 
         .then(results => computePrices(coin_prices))
+        // .then(results => console.log(coin_prices))
 
         .catch(e => console.log(e));
+})()
 
-    // return sortedPairs;
-}
-
-
-main()
-    .then(v => {
+ .then(v => {
         // console.log(v);
     });
