@@ -7,10 +7,11 @@
 
 const request = require('request'), Promise = require("bluebird"); //request for pulling JSON from api. Bluebird for Promises.
 
+require('./settings.js')(); //Includes settings file.
 
 // coin_prices is an object with data on price differences between markets. = {BTC : {market1 : 2000, market2: 4000, p : 2}, } (P for percentage difference)
 // results is a 2D array with coin name and percentage difference, sorted from low to high.
-let coin_prices = {}, results = []; // GLOBAL variables to get pushed to browser.
+let coin_prices = {}, numberOfRequests = 0, results = []; // GLOBAL variables to get pushed to browser.
 
 function getMarketData(options, coin_prices, callback) { //GET JSON DATA
     return new Promise(function (resolve, reject) {
@@ -78,60 +79,14 @@ function computePrices(data) {
 
 
 
-const market1Settings = {
-        marketName: 'bittrex',
-        URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
-        toBTCURL: false,
-        last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
-            return new Promise(function (res, rej) {
-                try {
-                    console.log(coin_prices);
-                    for (let obj of data.result) {
-                        let coinName = obj["MarketName"].replace("BTC-", '');
 
-                        if (!coin_prices[coinName]) coin_prices[coinName] = {};
-                        coin_prices[coinName].bittrex = obj.Last;
-                    }
-                    res(coin_prices);
-                }
-                catch (err) {
-                    rej(err);
-                }
-
-            })
-        }
-    },
-
-    market2Settings = {
-        marketName: 'btc38',
-        URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
-        toBTCURL: false,
-
-        last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
-            return new Promise(function (res, rej) {
-                let priceOfBTC = data.btc.ticker.last;
-                try {
-                    for (let key in data) {
-                        let coinName = key.toUpperCase();
-                        let price = data[key]['ticker'].last;
-                        if (!coin_prices[coinName]) coin_prices[coinName] = {};
-
-                        coin_prices[coinName]["btc38"] = data[key]['ticker'].last / priceOfBTC;
-                    }
-                    res(coin_prices);
-                }
-
-                catch (err) {
-                    console.log(err);
-                    rej(err)
-                }
-            })
-        }
-    };
-
-async function makeAQuoteBook(quoteBookSettings) {
+async function main(quoteBookSettings) {
     // console.log("heloo");
-    let arrayOfRequests = [getMarketData(market1Settings, coin_prices), getMarketData(market2Settings, coin_prices)];
+    let arrayOfRequests = [];
+
+    for(let i = 0; i <= markets.length; i++) {
+        arrayOfRequests.push(getMarketData(markets[i], coin_prices));
+    }
 
     await Promise.all(arrayOfRequests.map(p => p.catch(e => e)))
 
@@ -143,7 +98,7 @@ async function makeAQuoteBook(quoteBookSettings) {
 }
 
 
-makeAQuoteBook()
+main()
     .then(v => {
         // console.log(v);
     });
