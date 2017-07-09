@@ -51,7 +51,7 @@ In the terminal you will see an array of values ordered lowest to highest.  (Fro
 
 ## Adding and removing markets
 
-Currently you will have to add a market object with the correct settings in the array `markets`, situated in the `settings.js` file . I am updating the project every day and this will change soon.  (Will be able to add a market from the frontend soon)
+Currently you will have to add a market object with the correct settings in the array `markets`, situated in the `settings.js` file. I am updating the project every day and this will change soon.  (Will be able to add a market from the frontend soon)
 
 ## Built and deployed with
 
