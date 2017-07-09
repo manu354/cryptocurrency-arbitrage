@@ -11,8 +11,9 @@ To use, install nodejs ^V8.00 and run `npm install` in the folder where the scri
 * Current: **V1.0.0** core server code - logs the results to the terminal. No bot functionailty. No frontend.
 * **V1.1.0** - create api endpoints and display data on a minimal front end.
 * **V1.2.0** - host server and implement websockets.
-* **V1.5.0** - account login/signup functionialty with passport - allow users to add their own markets / disable markets.
-* **V1.8.0** - add graphs with history of arbitrage opportunities for every coin. 
+* **V1.3.0** - add the top 10 most popular cc markets manually.
+* **V1.4.0** - account login/signup functionialty with passport - allow users to add their own markets / disable markets.
+* **V1.5.0** - add graphs with history of arbitrage opportunities for every coin. 
 * **V2.0.0** - Implement a trading bot for atleast 2 markets.
 
 **...** 
