@@ -8,12 +8,14 @@ To use, install nodejs ^V8.00 and run `npm install` in the folder where the scri
 
 **Hopefully all done within a month, faster with some help :)**
 
-* Current: **V1.0** core server code - logs the results to the terminal. No bot functionailty. No frontend.
-* **V1.1** - create api endpoints and display data on a minimal front end.
-* **V1.2** - host server and implement websockets.
-* **V1.5** - account login/signup functionialty with passport - allow users to add their own markets / disable markets.
-* **V1.8** - add graphs with history of arbitrage opportunities for every coin. 
-* **V2.0** - Implement a trading bot for atleast 2 markets.
+* Current: **V1.0.0** core server code - logs the results to the terminal. No bot functionailty. No frontend.
+* **v1.1.0** - create api endpoints and display data on a minimal front end.
+* **v1.2.0** - host server and implement websockets.
+* **v1.3.0** - add the top 10 most popular cc markets manually.
+* **v1.4.0** - account login/signup functionialty with passport - allow users to add their own markets / disable markets.
+* **v1.5.0** - add graphs with history of arbitrage opportunities for every coin. 
+* **v2.0.0** - Implement a trading bot for atleast 2 markets.
+
 **...** 
 
 ## Getting Started
@@ -26,7 +28,13 @@ Required: Node.js **^ V8.0.0** this program uses ES7 features such as async/awai
 
 ### Installing
 
-CD into the correct folder. In a terminal write the following:
+In a terminal write the following:
+
+CD into the correct folder.
+
+```
+cd arbitrage
+```
 
 Install the required npm modules
 
@@ -44,7 +52,7 @@ In the terminal you will see an array of values ordered lowest to highest.  (Fro
 
 ## Adding and removing markets
 
-Currently you will have to add an object in the main.js. I am updating the project every day and this will change soon.  (Will be able to change from frontend soon)
+Currently you will have to add a market object with the correct settings in the array `markets`, situated in the `settings.js` file. I am updating the project every day and this will change soon.  (Will be able to add a market from the frontend soon)
 
 ## Built and deployed with
 
