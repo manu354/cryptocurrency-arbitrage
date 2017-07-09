@@ -8,9 +8,9 @@ To use, install nodejs ^V8.00 and run `npm install` in the folder where the scri
 
 **Hopefully all done within a month, faster with some help :)**
 
-* Current: **V1.0.0** core server code - logs the results to the terminal. No bot functionailty. No frontend.
-* **v1.1.0** - create api endpoints and display data on a minimal front end.
-* **v1.2.0** - host server and implement websockets.
+* **V1.0.0** ~~core server code - logs the results to the terminal. No bot functionailty. No frontend.~~
+* Current: **v1.1.0** - ~~create api endpoints and display data on a minimal front end.~~
+* **v1.2.0** - host server and ~~implement websockets.~~
 * **v1.3.0** - add the top 10 most popular cc markets manually.
 * **v1.4.0** - account login/signup functionialty with passport - allow users to add their own markets / disable markets.
 * **v1.5.0** - add graphs with history of arbitrage opportunities for every coin. 
@@ -32,19 +32,19 @@ In a terminal write the following:
 
 CD into the correct folder.
 
-```
+```shell
 cd arbitrage
 ```
 
 Install the required npm modules
 
-```
+```shell
 npm install
 ```
 
 To run the program
 
-```
+```shell
 npm start
 ```
 
