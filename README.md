@@ -59,7 +59,7 @@ Currently you will have to add a market object with the correct settings in the 
 
 * [Node.JS](https://nodejs.org) - For the backend
 * [Azure](http://ccarbitrage.azurewebsites.net/) - hosts the backend
-* [Github Pages] (https://manu354.github.io/arbitrage/) - hosts the beautiful frontend :)
+* [Github Pages](https://manu354.github.io/arbitrage/) - hosts the beautiful frontend :)
 
 ## Contributing
 
