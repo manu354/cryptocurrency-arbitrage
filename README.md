@@ -19,6 +19,22 @@ To use, go to https://manu354.github.io/arbitrage/ , for development install nod
 
 **...** 
 
+## How it works
+
+In short it collects JSON from multipile different cryptocurrency markets, and goes through the results and finds the highest and lowest price for each coin. For example if the results look like this for LTC:
+```JSON
+ltc : {
+  bittrex : 38.23,
+  jubi : 39.78,
+  chbtc: 51.8,
+...
+}
+```
+the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then push these results to the browser.
+
+### For more details go to the [wiki](https://github.com/manu354/arbitrage/wiki/How-the-script-works) (In progress)
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. A live website displaying the data will be available soon. 
