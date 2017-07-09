@@ -11,7 +11,7 @@ const app = require('express')(), helmet = require('helmet'), http = require('ht
     io = require('socket.io')(http); // For websocket server functionality
 app.use(helmet.hidePoweredBy({setTo: 'PHP/5.4.0'}));
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
