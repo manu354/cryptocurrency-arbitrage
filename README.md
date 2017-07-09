@@ -22,7 +22,7 @@ To use, go to https://manu354.github.io/arbitrage/ , for development install nod
 ## How it works
 
 In short it collects JSON from multipile different cryptocurrency markets, and goes through the results and finds the highest and lowest price for each coin. For example if the results look like this for LTC:
-```JSON
+```javascript
 ltc : {
   'bittrex' : 38.23,
   'jubi' : 39.78,
