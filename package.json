@@ -1,16 +1,16 @@
 {
   "name": "arbittrex",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "An arbitrage bot",
   "main": "main.js",
   "dependencies": {
     "bluebird": "^3.5.0",
-    "request" : "^2.81.0"
+    "request": "^2.81.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "node main",
-    "start" : "node main"
+    "start": "node main"
   },
   "repository": {
     "type": "git",
