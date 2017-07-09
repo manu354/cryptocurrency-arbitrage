@@ -23,8 +23,7 @@
 //
 // }
 
-
-markets = [
+let markets = [
     {
         marketName: 'bittrex',
         URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
@@ -84,7 +83,6 @@ markets = [
 
         last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
-                console.log("HHELLEEO!!");
                 let priceOfBTC = data.btc.last;
                 console.log(priceOfBTC);
                 try {
@@ -94,7 +92,6 @@ markets = [
                         if (!coin_prices[coinName]) coin_prices[coinName] = {};
 
                         coin_prices[coinName]["jubi"] = data[key].last / priceOfBTC;
-                        console.log(data[key].last, coinName);
                     }
                     res(coin_prices);
                 }

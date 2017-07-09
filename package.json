@@ -1,23 +1,26 @@
 {
   "name": "arbittrex",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "An arbitrage bot",
   "main": "main.js",
   "dependencies": {
     "bluebird": "^3.5.0",
-    "request" : "^2.81.0"
+    "express": "^4.15.3",
+    "helmet": "^3.6.1",
+    "request": "^2.81.0",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {},
   "scripts": {
     "test": "node main",
-    "start" : "node main"
+    "start": "node main"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/manu354/arbitrage.git"
   },
   "keywords": [
-    "Bittrex",
+    "bittrex",
     "arbitrage"
   ],
   "author": "Manu Masson",
