@@ -29,7 +29,7 @@ ltc : {
   'chbtc' : 51.8,
 }
 ```
-the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then push these results to the browser.
+the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then pushes these results to the browser.
 
 ### For more details go to the [wiki](https://github.com/manu354/arbitrage/wiki/How-the-script-works) (In progress)
 
@@ -66,9 +66,13 @@ npm start
 
 In the terminal you will see an array of values ordered lowest to highest.  (Frontend coming soon)
 
-## Adding and removing markets
+## Adding and removing markets - [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market)
 
 Currently you will have to add a market object with the correct settings in the array `markets`, situated in the `settings.js` file. I am updating the project every day and this will change soon.  (Will be able to add a market from the frontend soon)
+
+You can temporarily stop loading a market from the frontend (coming soon v1.4.0), or remove the market by deleting the object in `settings.js`
+
+For more information see the [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market) on adding markets.
 
 ## Built and deployed with
 
