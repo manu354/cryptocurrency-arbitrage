@@ -1,10 +1,6 @@
 {
   "name": "arbittrex",
-<<<<<<< HEAD
-  "version": "1.0.3",
-=======
-  "version": "1.0.2",
->>>>>>> 7e6777d2bb3da92dfe4308bc2bd7214fcbd5e591
+  "version": "1.1.0",
   "description": "An arbitrage bot",
   "main": "main.js",
   "dependencies": {
