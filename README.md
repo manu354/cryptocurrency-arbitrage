@@ -1,9 +1,9 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-# Arbitrage - a node.js script to help find and act on arbitrage opportunities. 
+# Crypto Arbitrage - a node.js script to help find and act on arbitrage opportunities. 
 A cryptocurrency arbitrage opportunity calculator and trading bot. Over 800 currencies and 50 markets.
 
-To use, go to https://manu354.github.io/arbitrage/ , for development install nodejs ^V8.00 and run `npm install` in the folder where the script `main.js` is. To run the program write `node main` or `npm start`. To change market settings, and to add your own markets edit the `settings.js` file.
+To use, go to https://manu354.github.io/crypto-arbitrage/ , for development install nodejs ^V8.00 and run `npm install` in the folder where the script `main.js` is. To run the program write `node main` or `npm start`. To change market settings, and to add your own markets edit the `settings.js` file.
 
 ## Short term **roadmap** 
 
@@ -79,7 +79,7 @@ For more information see the [wiki](https://github.com/manu354/arbitrage/wiki/Ho
 
 * [Node.JS](https://nodejs.org) - For the backend
 * [Azure](http://ccarbitrage.azurewebsites.net/) - hosts the backend
-* [Github Pages](https://manu354.github.io/arbitrage/) - hosts the beautiful frontend :)
+* [Github Pages](https://manu354.github.io/crypto-arbitrage/) - hosts the beautiful frontend :)
 
 ## Contributing
 
