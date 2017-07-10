@@ -7,10 +7,9 @@
 
 const request = require('request'), Promise = require("bluebird"); //request for pulling JSON from api. Bluebird for Promises.
 
-const app = require('express')(), helmet = require('helmet'), cors = require('cors'), http = require('http').Server(app),
-    io = require('socket.io')(http); // For websocket server functionality
+const app = require('express')(), helmet = require('helmet'), http = require('http').Server(app), io = require('socket.io')(http); // For websocket server functionality
 app.use(helmet.hidePoweredBy({setTo: 'PHP/5.4.0'}));
-app.use(cors({credentials: false}));
+// app.use(cors({credentials: false}));
 const port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
