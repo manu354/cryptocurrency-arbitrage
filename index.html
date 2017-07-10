@@ -23,7 +23,6 @@
         var socket = io();
 
         socket.on('news', function (data) {
-            console.log(data);1
             $('#messages').empty();
             for(var i = data.length-1; i >= 0 ; i--) {
                 $('#messages').append($('<li>').text(data[i]));
