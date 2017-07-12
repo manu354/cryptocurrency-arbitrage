@@ -18,6 +18,7 @@ app.get('/', function (req, res) {
 
 io.on('connection', function (socket) {
     socket.emit('news', results);
+    socket.emit('marketNames', marketNames)
 });
 
 http.listen(port, function () {

@@ -107,6 +107,12 @@ let markets = [
 
 ];
 
+let marketNames = [];
+for(let i = 0; i < markets.length; i++) {
+    marketNames.push(markets[i].marketName);
+}
+console.log(marketNames)
 module.exports = function () {
     this.markets = markets;
+    this.marketNames = marketNames;
 };
