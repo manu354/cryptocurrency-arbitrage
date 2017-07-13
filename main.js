@@ -74,7 +74,7 @@ function computePrices(data) {
                     arr.push([data[coin][market], market]);
                 }
                 arr.sort(function (a, b) {
-                    return a[1] - b[1];
+                    return a[0] - b[0];
                 });
                 for (let i = 0; i < arr.length; i++) {
                     for (let j = i + 1; j < arr.length; j++) {
