@@ -78,7 +78,7 @@ function computePrices(data) {
                 });
                 for (let i = 0; i < arr.length; i++) {
                     for (let j = i + 1; j < arr.length; j++) {
-                        results.push([coin, arr[i][0] / arr[j][0], arr[i][1], arr[j][1] ], [coin, arr[j][0] / arr[i][0], arr[j][1], arr[i][1]]);
+                        results.push([coin, arr[i][0] / arr[j][0], arr[i][0], arr[j][0], arr[i][1], arr[j][1] ], [coin, arr[j][0] / arr[i][0], arr[j][0], arr[i][0], arr[j][1], arr[i][1]]);
                     }
                 }
 
