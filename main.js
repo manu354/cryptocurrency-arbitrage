@@ -22,7 +22,7 @@ io.on('connection', function (socket) {
 });
 
 http.listen(port, function () {
-    console.log('listening on *:3000');
+    console.log('listening on', port);
 });
 
 
@@ -44,7 +44,7 @@ function getMarketData(options, coin_prices, callback) { //GET JSON DATA
 
                     newCoinPrices = options.last(data, coin_prices, options.toBTCURL);
                     numberOfRequests++;
-                    if(numberOfRequests >=1) computePrices(coin_prices);
+                    if (numberOfRequests >= 1) computePrices(coin_prices);
                     resolve(newCoinPrices);
 
                 }
@@ -64,29 +64,24 @@ function getMarketData(options, coin_prices, callback) { //GET JSON DATA
 }
 
 function computePrices(data) {
-    if(numberOfRequests >= 2) {
+    if (numberOfRequests >= 2) {
         results = [];
         for (let coin in data) {
 
             if (Object.keys(data[coin]).length > 1) {
                 let arr = [];
                 for (let market in data[coin]) {
-                    arr.push([market, data[coin][market]]);
+                    arr.push([data[coin][market], market]);
                 }
                 arr.sort(function (a, b) {
                     return a[1] - b[1];
                 });
-
-                let min = arr[0][1], max = arr[arr.length - 1][1];
-
-                if (min == 0) min = arr[1][1];
-                if (max == 0) max = arr[arr.length - 2][1];
-
-                if (min != 0 && max != 0) {
-                    let marketPair = arr[arr.length - 1][0] + "/" + arr[0][0];
-
-                    results.push([coin, max / min, marketPair]);
+                for (let i = 0; i < arr.length; i++) {
+                    for (let j = i + 1; j < arr.length; j++) {
+                        results.push([coin, arr[i][0] / arr[j][0], arr[i][1], arr[j][1] ], [coin, arr[j][0] / arr[i][0], arr[j][1], arr[i][1]]);
+                    }
                 }
+
             }
         }
         results.sort(function (a, b) {
@@ -94,7 +89,6 @@ function computePrices(data) {
         });
 
         io.emit('news', results);
-        console.log(results);
     }
 }
 
