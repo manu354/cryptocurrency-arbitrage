@@ -13,9 +13,10 @@ To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ , for developm
 * **v1.1.0** - ~~create api endpoints and display data on a minimal front end.~~
 * Current: **v1.2.0** - ~~host server and implement websockets.~~
 * **v1.3.0** - add the top 10 most popular cc markets manually.
-* **v1.4.0** - make the frontend actually look like something, not just display the raw data 
-* **v1.5.0** - account login/signup functionialty with passport to allow users to add their own markets / disable markets.
+* **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
+* **v1.5.0** - let users disable specific markets and coins. 
 * **v1.6.0** - add graphs with history of arbitrage opportunities for every coin. 
+* **v1.7.0** - account login/signup functionialty with passport to allow users to add their own markets.
 * **v2.0.0** - Implement a trading bot for atleast 2 markets.
 
 **...** 
@@ -71,15 +72,15 @@ In the terminal you will see an array of values ordered lowest to highest.  (Fro
 
 Currently you will have to add a market object with the correct settings in the array `markets`, situated in the `settings.js` file. I am updating the project every day and this will change soon.  (Will be able to add a market from the frontend soon)
 
-You can temporarily stop loading a market from the frontend (coming soon v1.4.0), or remove the market by deleting the object in `settings.js`
+You can temporarily stop loading a market from the frontend (coming soon v1.5.0), or remove the market by deleting the object in `settings.js`
 
 For more information see the [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market) on adding markets.
 
 ## Built and deployed with
 
 * [Node.JS](https://nodejs.org) - For the backend
-* [Azure](http://ccarbitrage.azurewebsites.net/) - hosts the backend
-* [Github Pages](https://manu354.github.io/cryptocurrency-arbitrage/) - hosts the beautiful frontend :)
+* [Azure](http://ccarbitrage.azurewebsites.net/) - hosts the backend (directly from this github repo)
+* [Github Pages](https://manu354.github.io/cryptocurrency-arbitrage/) - hosts the beautiful frontend :) (gets data from hosted node instance on azure)
 
 ## Contributing
 
