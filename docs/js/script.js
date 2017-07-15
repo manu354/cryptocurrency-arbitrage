@@ -41,15 +41,24 @@ $(window).load(function () {
     let bestSource = $("#best-template").html();
     let bestTemplate = Handlebars.compile(bestSource);
 
+
+
     function useData(data) {
+        let topN = $('.loadNumberInput').val(); if(!topN) topN = 5;
         highest.empty();  //Remove any previous data (LI) from UL
 
-        let topN = 5;
         for (let i = data.length - 1; i >= data.length - topN; i--) { //Loop through top 10
             let lowMarket = data[i][4], highMarket = data[i][5], pairIndex;
             for (let j = data.length - 1; j >= 0; j--) {
-                if (data[j][4] === highMarket && data[j][5] === lowMarket && data[i][0] !== data[j][0]) {
+                if (
+                    data[j][4] === highMarket //equal ...
+                    && data[j][5] === lowMarket // to opposite market
+
+                    && data[i][0] !== data[j][0] //and isnt the same coin as pair
+                    && data[j][0] !== 'BTC') //and isnt BTC
+                {
                     pairIndex = j;
+                    console.log(data[j][5]);
                     break;
                 }
             }

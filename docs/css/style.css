@@ -1441,7 +1441,7 @@ h1, h2, h3, h4, h5, h6 {
 #lowest, #highest {
     padding: 0!important;
     list-style: none;
-    margin : 40px auto!important;
+    margin : 0 auto!important;
     display: none;
     overflow: hidden!important;
     float: none!important;
@@ -1532,6 +1532,17 @@ i.cc {
     font-size : 25px;
     padding : 0 30px;
     text-transform: capitalize;
+}
+
+.loadNumber {
+    margin-top : 30px!important;
+    font-weight : 600!important;
+}
+
+.loadNumberInput {
+    max-width: 30px;
+    text-align: center;
+    margin : 0 10px;
 }
 
 
