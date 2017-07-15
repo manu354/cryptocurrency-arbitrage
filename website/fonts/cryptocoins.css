@@ -1,0 +1,1025 @@
+/*! Cryptocoins - cryptocurrency icon font | https://github.com/allienworks/cryptocoins */
+
+@font-face {
+  font-family: "cryptocoins-icons";
+  src: url('./cryptocoins-icons.eot');
+  src: url('./cryptocoins-icons.eot?#iefix') format('eot'),
+    url('./cryptocoins-icons.woff2') format('woff2'),
+    url('./cryptocoins-icons.woff') format('woff'),
+    url('./cryptocoins-icons.ttf') format('truetype'),
+    url('./cryptocoins-icons.svg#cryptocoins-icons') format('svg');
+}
+
+/* .cc:before { */
+[class*="cc-"]::before {
+  font-family: "cryptocoins-icons";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  /* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+  text-decoration: none;
+  text-transform: none;
+}
+
+
+.cc-ADC-alt:before {
+  content: "\E001";
+}
+
+.cc-ADC:before {
+  content: "\E002";
+}
+
+.cc-AEON-alt:before {
+  content: "\E003";
+}
+
+.cc-AEON:before {
+  content: "\E004";
+}
+
+.cc-AMP-alt:before {
+  content: "\E005";
+}
+
+.cc-AMP:before {
+  content: "\E006";
+}
+
+.cc-ANC-alt:before {
+  content: "\E007";
+}
+
+.cc-ANC:before {
+  content: "\E008";
+}
+
+.cc-ARCH-alt:before {
+  content: "\E009";
+}
+
+.cc-ARCH:before {
+  content: "\E00A";
+}
+
+.cc-ARDR-alt:before {
+  content: "\E00B";
+}
+
+.cc-ARDR:before {
+  content: "\E00C";
+}
+
+.cc-AUR-alt:before {
+  content: "\E00D";
+}
+
+.cc-AUR:before {
+  content: "\E00E";
+}
+
+.cc-BANX-alt:before {
+  content: "\E00F";
+}
+
+.cc-BANX:before {
+  content: "\E010";
+}
+
+.cc-BAT-alt:before {
+  content: "\E011";
+}
+
+.cc-BAT:before {
+  content: "\E012";
+}
+
+.cc-BAY-alt:before {
+  content: "\E013";
+}
+
+.cc-BAY:before {
+  content: "\E014";
+}
+
+.cc-BC-alt:before {
+  content: "\E015";
+}
+
+.cc-BC:before {
+  content: "\E016";
+}
+
+.cc-BCN-alt:before {
+  content: "\E017";
+}
+
+.cc-BCN:before {
+  content: "\E018";
+}
+
+.cc-BFT-alt:before {
+  content: "\E019";
+}
+
+.cc-BFT:before {
+  content: "\E01A";
+}
+
+.cc-BRK-alt:before {
+  content: "\E01B";
+}
+
+.cc-BRK:before {
+  content: "\E01C";
+}
+
+.cc-BRX-alt:before {
+  content: "\E01D";
+}
+
+.cc-BRX:before {
+  content: "\E01E";
+}
+
+.cc-BSD-alt:before {
+  content: "\E01F";
+}
+
+.cc-BSD:before {
+  content: "\E020";
+}
+
+.cc-BTA:before {
+  content: "\E021";
+}
+
+.cc-BTC-alt:before {
+  content: "\E022";
+}
+
+.cc-BTC:before {
+  content: "\E023";
+}
+
+.cc-BTCD-alt:before {
+  content: "\E024";
+}
+
+.cc-BTCD:before {
+  content: "\E025";
+}
+
+.cc-BTS-alt:before {
+  content: "\E026";
+}
+
+.cc-BTS:before {
+  content: "\E027";
+}
+
+.cc-CLAM-alt:before {
+  content: "\E028";
+}
+
+.cc-CLAM:before {
+  content: "\E029";
+}
+
+.cc-CLOAK-alt:before {
+  content: "\E02A";
+}
+
+.cc-CLOAK:before {
+  content: "\E02B";
+}
+
+.cc-DAO-alt:before {
+  content: "\E02C";
+}
+
+.cc-DAO:before {
+  content: "\E02D";
+}
+
+.cc-DASH-alt:before {
+  content: "\E02E";
+}
+
+.cc-DASH:before {
+  content: "\E02F";
+}
+
+.cc-DCR-alt:before {
+  content: "\E030";
+}
+
+.cc-DCR:before {
+  content: "\E031";
+}
+
+.cc-DGB-alt:before {
+  content: "\E032";
+}
+
+.cc-DGB:before {
+  content: "\E033";
+}
+
+.cc-DGD:before {
+  content: "\E034";
+}
+
+.cc-DGX:before {
+  content: "\E035";
+}
+
+.cc-DMD-alt:before {
+  content: "\E036";
+}
+
+.cc-DMD:before {
+  content: "\E037";
+}
+
+.cc-DOGE-alt:before {
+  content: "\E038";
+}
+
+.cc-DOGE:before {
+  content: "\E039";
+}
+
+.cc-EMC-alt:before {
+  content: "\E03A";
+}
+
+.cc-EMC:before {
+  content: "\E03B";
+}
+
+.cc-ERC-alt:before {
+  content: "\E03C";
+}
+
+.cc-ERC:before {
+  content: "\E03D";
+}
+
+.cc-ETC-alt:before {
+  content: "\E03E";
+}
+
+.cc-ETC:before {
+  content: "\E03F";
+}
+
+.cc-ETH-alt:before {
+  content: "\E040";
+}
+
+.cc-ETH:before {
+  content: "\E041";
+}
+
+.cc-FC2-alt:before {
+  content: "\E042";
+}
+
+.cc-FC2:before {
+  content: "\E043";
+}
+
+.cc-FCT-alt:before {
+  content: "\E044";
+}
+
+.cc-FCT:before {
+  content: "\E045";
+}
+
+.cc-FLO-alt:before {
+  content: "\E046";
+}
+
+.cc-FLO:before {
+  content: "\E047";
+}
+
+.cc-FRK-alt:before {
+  content: "\E048";
+}
+
+.cc-FRK:before {
+  content: "\E049";
+}
+
+.cc-FTC-alt:before {
+  content: "\E04A";
+}
+
+.cc-FTC:before {
+  content: "\E04B";
+}
+
+.cc-GAME-alt:before {
+  content: "\E04C";
+}
+
+.cc-GAME:before {
+  content: "\E04D";
+}
+
+.cc-GDC-alt:before {
+  content: "\E04E";
+}
+
+.cc-GDC:before {
+  content: "\E04F";
+}
+
+.cc-GEMZ-alt:before {
+  content: "\E050";
+}
+
+.cc-GEMZ:before {
+  content: "\E051";
+}
+
+.cc-GLD-alt:before {
+  content: "\E052";
+}
+
+.cc-GLD:before {
+  content: "\E053";
+}
+
+.cc-GNO-alt:before {
+  content: "\E054";
+}
+
+.cc-GNO:before {
+  content: "\E055";
+}
+
+.cc-GNT-alt:before {
+  content: "\E056";
+}
+
+.cc-GNT:before {
+  content: "\E057";
+}
+
+.cc-GRC-alt:before {
+  content: "\E058";
+}
+
+.cc-GRC:before {
+  content: "\E059";
+}
+
+.cc-GRS:before {
+  content: "\E05A";
+}
+
+.cc-HEAT-alt:before {
+  content: "\E05B";
+}
+
+.cc-HEAT:before {
+  content: "\E05C";
+}
+
+.cc-ICN-alt:before {
+  content: "\E05D";
+}
+
+.cc-ICN:before {
+  content: "\E05E";
+}
+
+.cc-IFC-alt:before {
+  content: "\E05F";
+}
+
+.cc-IFC:before {
+  content: "\E060";
+}
+
+.cc-INCNT-alt:before {
+  content: "\E061";
+}
+
+.cc-INCNT:before {
+  content: "\E062";
+}
+
+.cc-IOC-alt:before {
+  content: "\E063";
+}
+
+.cc-IOC:before {
+  content: "\E064";
+}
+
+.cc-IOTA-alt:before {
+  content: "\E065";
+}
+
+.cc-IOTA:before {
+  content: "\E066";
+}
+
+.cc-JBS-alt:before {
+  content: "\E067";
+}
+
+.cc-JBS:before {
+  content: "\E068";
+}
+
+.cc-KMD-alt:before {
+  content: "\E069";
+}
+
+.cc-KMD:before {
+  content: "\E06A";
+}
+
+.cc-KOBO:before {
+  content: "\E06B";
+}
+
+.cc-KORE-alt:before {
+  content: "\E06C";
+}
+
+.cc-KORE:before {
+  content: "\E06D";
+}
+
+.cc-LBC-alt:before {
+  content: "\E06E";
+}
+
+.cc-LBC:before {
+  content: "\E06F";
+}
+
+.cc-LDOGE-alt:before {
+  content: "\E070";
+}
+
+.cc-LDOGE:before {
+  content: "\E071";
+}
+
+.cc-LISK-alt:before {
+  content: "\E072";
+}
+
+.cc-LISK:before {
+  content: "\E073";
+}
+
+.cc-LTC-alt:before {
+  content: "\E074";
+}
+
+.cc-LTC:before {
+  content: "\E075";
+}
+
+.cc-MAID-alt:before {
+  content: "\E076";
+}
+
+.cc-MAID:before {
+  content: "\E077";
+}
+
+.cc-MINT-alt:before {
+  content: "\E078";
+}
+
+.cc-MINT:before {
+  content: "\E079";
+}
+
+.cc-MONA-alt:before {
+  content: "\E07A";
+}
+
+.cc-MONA:before {
+  content: "\E07B";
+}
+
+.cc-MRC:before {
+  content: "\E07C";
+}
+
+.cc-MSC-alt:before {
+  content: "\E07D";
+}
+
+.cc-MSC:before {
+  content: "\E07E";
+}
+
+.cc-MTR-alt:before {
+  content: "\E07F";
+}
+
+.cc-MTR:before {
+  content: "\E080";
+}
+
+.cc-MUE-alt:before {
+  content: "\E081";
+}
+
+.cc-MUE:before {
+  content: "\E082";
+}
+
+.cc-NBT:before {
+  content: "\E083";
+}
+
+.cc-NEOS-alt:before {
+  content: "\E084";
+}
+
+.cc-NEOS:before {
+  content: "\E085";
+}
+
+.cc-NEU-alt:before {
+  content: "\E086";
+}
+
+.cc-NEU:before {
+  content: "\E087";
+}
+
+.cc-NLG-alt:before {
+  content: "\E088";
+}
+
+.cc-NLG:before {
+  content: "\E089";
+}
+
+.cc-NMC-alt:before {
+  content: "\E08A";
+}
+
+.cc-NMC:before {
+  content: "\E08B";
+}
+
+.cc-NOTE-alt:before {
+  content: "\E08C";
+}
+
+.cc-NOTE:before {
+  content: "\E08D";
+}
+
+.cc-NVC-alt:before {
+  content: "\E08E";
+}
+
+.cc-NVC:before {
+  content: "\E08F";
+}
+
+.cc-NXT-alt:before {
+  content: "\E090";
+}
+
+.cc-NXT:before {
+  content: "\E091";
+}
+
+.cc-OK-alt:before {
+  content: "\E092";
+}
+
+.cc-OK:before {
+  content: "\E093";
+}
+
+.cc-OMNI-alt:before {
+  content: "\E094";
+}
+
+.cc-OMNI:before {
+  content: "\E095";
+}
+
+.cc-OPAL-alt:before {
+  content: "\E096";
+}
+
+.cc-OPAL:before {
+  content: "\E097";
+}
+
+.cc-PIGGY-alt:before {
+  content: "\E098";
+}
+
+.cc-PIGGY:before {
+  content: "\E099";
+}
+
+.cc-PINK-alt:before {
+  content: "\E09A";
+}
+
+.cc-PINK:before {
+  content: "\E09B";
+}
+
+.cc-PIVX-alt:before {
+  content: "\E09C";
+}
+
+.cc-PIVX:before {
+  content: "\E09D";
+}
+
+.cc-POT-alt:before {
+  content: "\E09E";
+}
+
+.cc-POT:before {
+  content: "\E09F";
+}
+
+.cc-PPC-alt:before {
+  content: "\E0A0";
+}
+
+.cc-PPC:before {
+  content: "\E0A1";
+}
+
+.cc-QRK-alt:before {
+  content: "\E0A2";
+}
+
+.cc-QRK:before {
+  content: "\E0A3";
+}
+
+.cc-RADS-alt:before {
+  content: "\E0A4";
+}
+
+.cc-RADS:before {
+  content: "\E0A5";
+}
+
+.cc-RBIES-alt:before {
+  content: "\E0A6";
+}
+
+.cc-RBIES:before {
+  content: "\E0A7";
+}
+
+.cc-RBT-alt:before {
+  content: "\E0A8";
+}
+
+.cc-RBT:before {
+  content: "\E0A9";
+}
+
+.cc-RBY-alt:before {
+  content: "\E0AA";
+}
+
+.cc-RBY:before {
+  content: "\E0AB";
+}
+
+.cc-RDD-alt:before {
+  content: "\E0AC";
+}
+
+.cc-RDD:before {
+  content: "\E0AD";
+}
+
+.cc-REP-alt:before {
+  content: "\E0AE";
+}
+
+.cc-REP:before {
+  content: "\E0AF";
+}
+
+.cc-RISE-alt:before {
+  content: "\E0B0";
+}
+
+.cc-RISE:before {
+  content: "\E0B1";
+}
+
+.cc-SAR-alt:before {
+  content: "\E0B2";
+}
+
+.cc-SAR:before {
+  content: "\E0B3";
+}
+
+.cc-SCOT-alt:before {
+  content: "\E0B4";
+}
+
+.cc-SCOT:before {
+  content: "\E0B5";
+}
+
+.cc-SDC-alt:before {
+  content: "\E0B6";
+}
+
+.cc-SDC:before {
+  content: "\E0B7";
+}
+
+.cc-SIA-alt:before {
+  content: "\E0B8";
+}
+
+.cc-SIA:before {
+  content: "\E0B9";
+}
+
+.cc-SJCX-alt:before {
+  content: "\E0BA";
+}
+
+.cc-SJCX:before {
+  content: "\E0BB";
+}
+
+.cc-SLG-alt:before {
+  content: "\E0BC";
+}
+
+.cc-SLG:before {
+  content: "\E0BD";
+}
+
+.cc-SLS-alt:before {
+  content: "\E0BE";
+}
+
+.cc-SLS:before {
+  content: "\E0BF";
+}
+
+.cc-SNRG-alt:before {
+  content: "\E0C0";
+}
+
+.cc-SNRG:before {
+  content: "\E0C1";
+}
+
+.cc-START-alt:before {
+  content: "\E0C2";
+}
+
+.cc-START:before {
+  content: "\E0C3";
+}
+
+.cc-STEEM-alt:before {
+  content: "\E0C4";
+}
+
+.cc-STEEM:before {
+  content: "\E0C5";
+}
+
+.cc-STR-alt:before {
+  content: "\E0C6";
+}
+
+.cc-STR:before {
+  content: "\E0C7";
+}
+
+.cc-STRAT-alt:before {
+  content: "\E0C8";
+}
+
+.cc-STRAT:before {
+  content: "\E0C9";
+}
+
+.cc-SWIFT-alt:before {
+  content: "\E0CA";
+}
+
+.cc-SWIFT:before {
+  content: "\E0CB";
+}
+
+.cc-SYNC-alt:before {
+  content: "\E0CC";
+}
+
+.cc-SYNC:before {
+  content: "\E0CD";
+}
+
+.cc-SYS-alt:before {
+  content: "\E0CE";
+}
+
+.cc-SYS:before {
+  content: "\E0CF";
+}
+
+.cc-TRIG-alt:before {
+  content: "\E0D0";
+}
+
+.cc-TRIG:before {
+  content: "\E0D1";
+}
+
+.cc-TX-alt:before {
+  content: "\E0D2";
+}
+
+.cc-TX:before {
+  content: "\E0D3";
+}
+
+.cc-UBQ-alt:before {
+  content: "\E0D4";
+}
+
+.cc-UBQ:before {
+  content: "\E0D5";
+}
+
+.cc-UNITY-alt:before {
+  content: "\E0D6";
+}
+
+.cc-UNITY:before {
+  content: "\E0D7";
+}
+
+.cc-USDT-alt:before {
+  content: "\E0D8";
+}
+
+.cc-USDT:before {
+  content: "\E0D9";
+}
+
+.cc-VIOR-alt:before {
+  content: "\E0DA";
+}
+
+.cc-VIOR:before {
+  content: "\E0DB";
+}
+
+.cc-VNL-alt:before {
+  content: "\E0DC";
+}
+
+.cc-VNL:before {
+  content: "\E0DD";
+}
+
+.cc-VPN-alt:before {
+  content: "\E0DE";
+}
+
+.cc-VPN:before {
+  content: "\E0DF";
+}
+
+.cc-VRC-alt:before {
+  content: "\E0E0";
+}
+
+.cc-VRC:before {
+  content: "\E0E1";
+}
+
+.cc-VTC-alt:before {
+  content: "\E0E2";
+}
+
+.cc-VTC:before {
+  content: "\E0E3";
+}
+
+.cc-WAVES-alt:before {
+  content: "\E0E4";
+}
+
+.cc-WAVES:before {
+  content: "\E0E5";
+}
+
+.cc-XAI-alt:before {
+  content: "\E0E6";
+}
+
+.cc-XAI:before {
+  content: "\E0E7";
+}
+
+.cc-XBS-alt:before {
+  content: "\E0E8";
+}
+
+.cc-XBS:before {
+  content: "\E0E9";
+}
+
+.cc-XCP-alt:before {
+  content: "\E0EA";
+}
+
+.cc-XCP:before {
+  content: "\E0EB";
+}
+
+.cc-XEM-alt:before {
+  content: "\E0EC";
+}
+
+.cc-XEM:before {
+  content: "\E0ED";
+}
+
+.cc-XMR:before {
+  content: "\E0EE";
+}
+
+.cc-XPM-alt:before {
+  content: "\E0EF";
+}
+
+.cc-XPM:before {
+  content: "\E0F0";
+}
+
+.cc-XRP-alt:before {
+  content: "\E0F1";
+}
+
+.cc-XRP:before {
+  content: "\E0F2";
+}
+
+.cc-XVG-alt:before {
+  content: "\E0F3";
+}
+
+.cc-XVG:before {
+  content: "\E0F4";
+}
+
+.cc-YBC-alt:before {
+  content: "\E0F5";
+}
+
+.cc-YBC:before {
+  content: "\E0F6";
+}
+
+.cc-ZEC-alt:before {
+  content: "\E0F7";
+}
+
+.cc-ZEC:before {
+  content: "\E0F8";
+}
+
+.cc-ZEIT-alt:before {
+  content: "\E0F9";
+}
+
+.cc-ZEIT:before {
+  content: "\E0FA";
+}
