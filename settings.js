@@ -33,10 +33,11 @@ let markets = [
             return new Promise(function (res, rej) {
                 try {
                     for (let obj of data.result) {
-                        let coinName = obj["MarketName"].replace("BTC-", '');
-
-                        if (!coin_prices[coinName]) coin_prices[coinName] = {};
-                        coin_prices[coinName].bittrex = obj.Last;
+                        if(obj["MarketName"].includes('BTC-')) {
+                            let coinName = obj["MarketName"].replace("BTC-", '');
+                            if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                            coin_prices[coinName].bittrex = obj.Last;
+                        }
                     }
                     res(coin_prices);
                 }
@@ -148,7 +149,7 @@ let markets = [
 ];
 
 let marketNames = [];
-for(let i = 0; i < markets.length; i++) {
+for(let i = 0; i < markets.length-1; i++) { // Loop except last
     marketNames.push(markets[i].marketName);
 }
 console.log("Markets:", marketNames);

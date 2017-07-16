@@ -17,32 +17,23 @@ $(window).load(function () {
     let numberOfMLoads = 0; //Number of Market loadss
 
 
-    socket.on('marketNames', function (data) { //Function for when we get market data
+    socket.on('coinsAndMarkets', function (data) { //Function for when we get market data
         if (numberOfMLoads === 0) {  //Only  need to run this function once (Currently)
+            console.log(data);
+            let list = $('#market-list').empty(), coinList = $('#coin-list').empty();
 
-            let list = $('#market-list').empty()
+            let marketSource = $("#market-list-template").html(); //Source
+            let marketTemplate = Handlebars.compile(marketSource); // ^ and template for coin and market lists
 
-            let source = $("#market-list-template").html(); //Source
-            let template = Handlebars.compile(source); // ^ and template for coin and market lists
+            let coinSource = $("#coin-list-template").html(); //Source
+            let coinTemplate = Handlebars.compile(coinSource); // ^ and template for coin and market lists
 
-            for (let i = data.length - 1; i >= 0; i--) { //Loop through markets
-                let context = {market: data[i]}; //
-                list.append(template(context));
-            }
-            numberOfMLoads++;
-        }
-    });
-    socket.on('coinNames', function (data) { //Function for when we get market data
-        if (numberOfMLoads === 0) {  //Only  need to run this function once (Currently)
-
-           let coinList = $('#coin-list').empty();
-
-            let source = $("#market-list-template").html(); //Source
-            let template = Handlebars.compile(source); // ^ and template for coin and market lists
-
-            for (let i = data.length - 1; i >= 0; i--) { //Loop through markets
-                let context = {coin : data[i]}; //
-                coinList.append(template(context))
+            for (let i = data[1].length - 1; i >= 0; i--) { //Loop through markets
+                let context = {market: data[0][i], coin : data[1][i]}; //
+                if(data[0][i]){
+                    list.append(marketTemplate(context));
+                }
+                coinList.append(coinTemplate(context))
             }
             numberOfMLoads++;
         }
@@ -107,7 +98,7 @@ $(window).load(function () {
                 highest.append(html);
             }
             else {
-                topN++;
+                topN++
                 continue;
             }
         }
