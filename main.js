@@ -16,10 +16,6 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function (socket) {
-    socket.emit('results', results);
-    socket.emit('marketNames', marketNames)
-});
 
 http.listen(port, function () {
     console.log('listening on', port);
@@ -27,6 +23,11 @@ http.listen(port, function () {
 
 
 require('./settings.js')(); //Includes settings file.
+
+io.on('connection', function (socket) {
+    socket.emit('results', results);
+    socket.emit('marketNames', marketNames)
+});
 
 // coin_prices is an object with data on price differences between markets. = {BTC : {market1 : 2000, market2: 4000, p : 2}, } (P for percentage difference)
 // results is a 2D array with coin name and percentage difference, sorted from low to high.
@@ -37,7 +38,7 @@ function getMarketData(options, coin_prices, callback) { //GET JSON DATA
         request(options.URL, function (error, response, body) {
             try {
                 let data = JSON.parse(body);
-
+                console.log("Success", options.marketName);
                 if (options.marketName) {
 
                     let newCoinPrices;
