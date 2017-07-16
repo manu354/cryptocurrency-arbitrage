@@ -26,7 +26,8 @@ require('./settings.js')(); //Includes settings file.
 
 io.on('connection', function (socket) {
     socket.emit('results', results);
-    socket.emit('marketNames', marketNames)
+    socket.emit('marketNames', marketNames);
+    socket.emit('coinNames', Object.keys(coin_prices));
 });
 
 // coin_prices is an object with data on price differences between markets. = {BTC : {market1 : 2000, market2: 4000, p : 2}, } (P for percentage difference)
