@@ -122,6 +122,7 @@ let markets = [
                         if (indexOfBTC > 0 && !pair.includes('future') && !market.includes('qryptos') && !market.includes('quoine')) {
                             if(marketNames.indexOf(market) === -1 ){
                                 marketNames.push(market);
+                                console.log(marketNames);
                             }
                             let coin = pair.replace(/btc/i, '').toUpperCase();
                             let price = data[key].price.last;

@@ -20,14 +20,28 @@ $(window).load(function () {
     socket.on('marketNames', function (data) { //Function for when we get market data
         if (numberOfMLoads === 0) {  //Only  need to run this function once (Currently)
 
-            let list = $('#market-list').empty(), coinList = $('#coin-list').empty();
+            let list = $('#market-list').empty()
 
             let source = $("#market-list-template").html(); //Source
             let template = Handlebars.compile(source); // ^ and template for coin and market lists
 
             for (let i = data.length - 1; i >= 0; i--) { //Loop through markets
-                let context = {market: data[i], coin : data[i]}; //
+                let context = {market: data[i]}; //
                 list.append(template(context));
+            }
+            numberOfMLoads++;
+        }
+    });
+    socket.on('coinNames', function (data) { //Function for when we get market data
+        if (numberOfMLoads === 0) {  //Only  need to run this function once (Currently)
+
+           let coinList = $('#coin-list').empty();
+
+            let source = $("#market-list-template").html(); //Source
+            let template = Handlebars.compile(source); // ^ and template for coin and market lists
+
+            for (let i = data.length - 1; i >= 0; i--) { //Loop through markets
+                let context = {coin : data[i]}; //
                 coinList.append(template(context))
             }
             numberOfMLoads++;
