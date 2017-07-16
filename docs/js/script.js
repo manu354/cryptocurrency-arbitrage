@@ -96,7 +96,7 @@ $(window).load(function () {
 
     let waitForMoreData;
 
-    socket.on('news', function (data) {
+    socket.on('results', function (data) {
         clearTimeout(waitForMoreData); //Every time we recieive new data clear the previous timeout so we don't loop through the data too many times unnecessarily...
         numberOfLoads++;
 

@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-    socket.emit('news', results);
+    socket.emit('results', results);
     socket.emit('marketNames', marketNames)
 });
 
@@ -96,7 +96,7 @@ function computePrices(data) {
 (async function main() {
     let arrayOfRequests = [];
 
-    for (let i = 0; i <= markets.length; i++) {
+    for (let i = 0; i < markets.length; i++) {
         arrayOfRequests.push(getMarketData(markets[i], coin_prices));
     }
 
