@@ -11,9 +11,9 @@ To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ , for developm
 
 * **V1.0.0** ~~core server code - logs the results to the terminal. No bot functionailty. No frontend.~~
 * **v1.1.0** - ~~create api endpoints and display data on a minimal front end.~~
-* Current: **v1.2.0** - ~~host server and implement websockets.~~
-* **v1.3.0** - add the top 10 most popular cc markets manually.
-* **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
+* **v1.2.0** - ~~host server and implement websockets.~~
+* **v1.3.0** - ~~add the top 10 most popular cc markets manually.~~ Known [bugs](https://github.com/manu354/arbitrage/wiki/bugs-v1.3.0)
+* Current: **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
 * **v1.5.0** - let users disable specific markets and coins. 
 * **v1.6.0** - add graphs with history of arbitrage opportunities for every coin. 
 * **v1.7.0** - account login/signup functionialty with passport to allow users to add their own markets.
