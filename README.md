@@ -12,7 +12,7 @@ To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ , for developm
 * **V1.0.0** ~~core server code - logs the results to the terminal. No bot functionailty. No frontend.~~
 * **v1.1.0** - ~~create api endpoints and display data on a minimal front end.~~
 * **v1.2.0** - ~~host server and implement websockets.~~
-* **v1.3.0** - ~~add the top 10 most popular cc markets manually.~~ Known [bugs](https://github.com/manu354/arbitrage/wiki/bugs-v1.3.0)
+* **v1.3.0** - ~~add the top 10 most popular cc markets manually.~~ [bugs](https://github.com/manu354/arbitrage/wiki/bugs-v1.3.0)
 * Current: **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
 * **v1.5.0** - let users disable specific markets and coins. 
 * **v1.6.0** - add graphs with history of arbitrage opportunities for every coin. 
@@ -33,7 +33,7 @@ ltc : {
 ```
 the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then pushes these results to the browser.
 
-### For more details go to the [wiki](https://github.com/manu354/arbitrage/wiki/How-the-script-works) (In progress)
+### For more details go to the [wiki](https://github.com/manu354/arbitrage/wiki/How-the-script-works) (In progress) or look at the code :)
 
 
 ## Getting Started
