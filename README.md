@@ -1,4 +1,4 @@
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+,[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # Crypto Arbitrage - a node.js script to help find and act on arbitrage opportunities. 
 A cryptocurrency arbitrage opportunity calculator and trading bot. Over 800 currencies and 50 markets.
@@ -15,6 +15,7 @@ To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ , for developm
 * **v1.3.0** - ~~add the top 10 most popular cc markets manually.~~ [bugs](https://github.com/manu354/arbitrage/wiki/bugs-v1.3.0)
 * Current: **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
 * **v1.5.0** - let users disable specific markets and coins. 
+* **V1.5.1** - add  maximum volume for every opportunity
 * **v1.6.0** - add graphs with history of arbitrage opportunities for every coin. 
 * **v1.7.0** - account login/signup functionialty with passport to allow users to add their own markets.
 * **v2.0.0** - Implement a trading bot for atleast 2 markets.
