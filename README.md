@@ -33,7 +33,9 @@ ltc : {
   'chbtc' : 51.8,
 }
 ```
-the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then pushes these results to the browser.
+the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then pushes these results to the browser. It will also find the next highest market pairs, e.g. chbtc / jubi is the second highest pair and chbtc/bittrex the third, jubi/bittrex the fourth and so on until every possible combination has been computed.
+
+
 
 ### For more details go to the [wiki](https://github.com/manu354/arbitrage/wiki/How-the-script-works) (In progress) or look at the code :)
 
