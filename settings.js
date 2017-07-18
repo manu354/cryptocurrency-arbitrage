@@ -120,7 +120,7 @@ let markets = [
                         let marketPair = key.split(':');
                         let market = marketPair[0], pair = marketPair[1];
                         let indexOfBTC = pair.indexOf('btc');
-                        if (indexOfBTC > 0 && !pair.includes('future') && !market.includes('qryptos') && !market.includes('quoine')) {
+                        if (indexOfBTC > 0 && !pair.includes('future') && !market.includes('qryptos') && !market.includes('quoine') && !market.includes('poloniex')) {
                             if(marketNames.indexOf(market) === -1 ){
                                 marketNames.push(market);
                                 console.log(marketNames);
@@ -143,8 +143,32 @@ let markets = [
             })
         }
 
-    }
+    },
+    {
+        marketName: 'poloniex',
+        URL: 'https://poloniex.com/public?command=returnTicker',
+        toBTCURL: false,
+        last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
+            return new Promise(function (res, rej) {
+                try {
+                    for (var obj in data) {
+                        if(obj.includes('BTC_')&&obj!=="BTC_EMC2") {
+                            let coinName = obj.replace("BTC_", '');
+                            if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                            coin_prices[coinName].poloniex = data[obj].last;
+                        }
+                    }
+                    res(coin_prices);
+                }
+                catch (err) {
+                    console.log(err);
+                    rej(err);
+                }
 
+            })
+        },
+
+    },
 
 ];
 
