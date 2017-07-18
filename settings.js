@@ -120,7 +120,7 @@ let markets = [
                         let marketPair = key.split(':');
                         let market = marketPair[0], pair = marketPair[1];
                         let indexOfBTC = pair.indexOf('btc');
-                        if (indexOfBTC > 0 && !pair.includes('future') && !market.includes('qryptos') && !market.includes('quoine')) {
+                        if (indexOfBTC > 0 && !pair.includes('future') && !market.includes('qryptos') && !market.includes('quoine') && !market.includes('poloniex')) {
                             if(marketNames.indexOf(market) === -1 ){
                                 marketNames.push(market);
                                 console.log(marketNames);
