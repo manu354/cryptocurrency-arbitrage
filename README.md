@@ -11,10 +11,12 @@ To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ , for developm
 
 * **V1.0.0** ~~core server code - logs the results to the terminal. No bot functionailty. No frontend.~~
 * **v1.1.0** - ~~create api endpoints and display data on a minimal front end.~~
-* Current: **v1.2.0** - ~~host server and implement websockets.~~
-* **v1.3.0** - add the top 10 most popular cc markets manually.
-* **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
+* **v1.2.0** - ~~host server and implement websockets.~~
+* **v1.3.0** - ~~add the top 10 most popular cc markets manually.~~ [bugs](https://github.com/manu354/arbitrage/wiki/bugs-v1.3.0)
+* Current: **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
 * **v1.5.0** - let users disable specific markets and coins. 
+* **V1.5.1** - add  maximum volume for every opportunity
+* **V1.5.2** - design a movile view for the frontend
 * **v1.6.0** - add graphs with history of arbitrage opportunities for every coin. 
 * **v1.7.0** - account login/signup functionialty with passport to allow users to add their own markets.
 * **v2.0.0** - Implement a trading bot for atleast 2 markets.
@@ -31,9 +33,11 @@ ltc : {
   'chbtc' : 51.8,
 }
 ```
-the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then pushes these results to the browser.
+the script will find the the highest price (chbtc.com), lowest price (bittrex), and divide the two: 51.8/38.23 = ~1.35 (~35% profit margin) and then pushes these results to the browser. It will also find the next highest market pairs, e.g. chbtc / jubi is the second highest pair and chbtc/bittrex the third, jubi/bittrex the fourth and so on until every possible combination has been computed.
 
-### For more details go to the [wiki](https://github.com/manu354/arbitrage/wiki/How-the-script-works) (In progress)
+
+
+### For more details go to the [wiki](https://github.com/manu354/arbitrage/wiki/How-the-script-works) (In progress) or look at the code :)
 
 
 ## Getting Started
