@@ -1,6 +1,6 @@
 {
-  "name": "crypto-arbitrage",
-  "version": "1.1.0",
+  "name": "cryptocurrency-arbitrage",
+  "version": "1.4.0",
   "description": "An arbitrage bot",
   "main": "main.js",
   "engines": {
@@ -30,5 +30,5 @@
   "bugs": {
     "url": "https://github.com/manu354/crypto-arbitrage/issues"
   },
-  "homepage": "manu354.github.io/crypto-arbitrage"
+  "homepage": "manu354.github.io/cryptocurrency-arbitrage"
 }
