@@ -17,19 +17,42 @@ var checkedMarkets = {
 
 
 function addRemoveCoin(coin) {
-    alert("Added/Removed:", coin);
-
     checkedCoins[coin] = !checkedCoins[coin];
     console.log(checkedCoins[coin]);
     console.log(checkedCoins);
+    $('#check-' + coin).addClass('fa-check-square-o');
+    $('#check-' + coin).removeClass('fa-square-o');
+    useData();
 }
 
 function addRemoveMarket(market) {
     checkedMarkets[market] = !checkedMarkets[market];
     console.log(checkedMarkets[market]);
     console.log(checkedMarkets);
+    $('#check-' + market).addClass('fa-check-square-o');
+    $('#check-' + market).removeClass('fa-square-o');
+    useData();
 }
 
+// function searchMarketsOrCoins(marketOrCoin, input) {
+//    input = input.toUpperCase();
+//     if(marketOrCoin === 'coin'){
+//
+//     }
+//
+//     else {
+//         for (let i = data[0].length - 1; i >= 0; i--) { //Loop through markets
+//             let market = data[0][i].toUpperCase();
+//             if(market !== input) {
+//
+//             }
+//         }
+//
+//     }
+//
+// }
+
+let useData;
 
 $(window).load(function () {
     new WOW().init();
@@ -55,15 +78,22 @@ $(window).load(function () {
             let coinSource = $("#coin-list-template").html(); //Source
             let coinTemplate = Handlebars.compile(coinSource); // ^ and template for coin and market lists
 
-            for (let i = data[1].length - 1; i >= 0; i--) { //Loop through markets
+            for (let i = data[1].length - 1; i >= 0; i--) { //Loop through coins
                 let context = {market: data[0][i], coin: data[1][i]}; //
-                let coin = context.coin;
+                let coin = context.coin, market = context.market;
                 if (data[0][i]) {
                     list.append(marketTemplate(context));
+                    if (checkedMarkets[market] === false || checkedMarkets[market] === undefined) {
+                        $('#check-' + market).removeClass('fa-check-square-o');
+                        $('#check-' + market).addClass('fa-square-o')
+                    }
                 }
+
                 coinList.append(coinTemplate(context));
-                if (checkedCoins[coin] === undefined) {
-                    checkedCoins[coin] = true;
+                if (checkedCoins[coin] === undefined) checkedCoins[coin] = true;
+                else {
+                    $('#check-' + coin).removeClass('fa-check-square-o');
+                    $('#check-' + coin).addClass('fa-square-o');
                 }
             }
             numberOfMLoads++;
@@ -77,14 +107,17 @@ $(window).load(function () {
     let bestSource = $("#best-template").html();
     let bestTemplate = Handlebars.compile(bestSource);
 
-    let coinData;
-    function useData(data) {
+    var data;
+
+    $('.loadNumberInput').change(function () {
+        useData();
+    });
+    useData = function() {
         let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
         highest.empty();  //Remove any previous data (LI) from UL
         console.log(checkedMarkets);
         for (let i = data.length - 1; i >= data.length - topN; i--) { //Loop through top 10
-            console.log(data[i][0]);
             let lowMarket = data[i][4], highMarket = data[i][5], pairIndex, coinName = data[i][0];
             if (checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName]) {
                 for (let j = data.length - 1; j >= 0; j--) {
@@ -141,29 +174,29 @@ $(window).load(function () {
         console.log(numberOfLoads)
     }
 
-let waitForMoreData;
+    let waitForMoreData;
 
-socket.on('results', function (data) {
-    clearTimeout(waitForMoreData); //Every time we recieive new data clear the previous timeout so we don't loop through the data too many times unnecessarily...
-    numberOfLoads++;
+    socket.on('results', function (results) {
+        clearTimeout(waitForMoreData); //Every time we recieive new data clear the previous timeout so we don't loop through the data too many times unnecessarily...
+        numberOfLoads++;
 
-    if (numberOfLoads === 1) { //...unless we haven't loaded the data yet, then just run useData() immediately.
-        $('.socket-loader').hide(); // Hide the preloader.gif
-        $('#highest, #lowest').show(); //Show The UL
-        coinData = data
-        useData();
-    }
-
-    else {
-        waitForMoreData = setTimeout(function () {
-            coinData = data;
+        if (numberOfLoads === 1) { //...unless we haven't loaded the data yet, then just run useData() immediately.
+            $('.socket-loader').hide(); // Hide the preloader.gif
+            $('#highest, #lowest').show(); //Show The UL
+            data = results;
             useData();
-        }, 1000); //Wait a second before we run the function in case we get newer data within less than a second
-    }
+        }
+
+        else {
+            waitForMoreData = setTimeout(function () {
+                data = results;
+                useData();
+            }, 1000); //Wait a second before we run the function in case we get newer data within less than a second
+        }
+
+    });
 
 });
-
-})
 
 
 

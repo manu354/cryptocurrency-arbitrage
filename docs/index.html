@@ -200,7 +200,7 @@
 <script id="coin-list-template" type="text/x-handlebars-template">
     <li class="active">
         <a href="javascript:addRemoveCoin('{{coin}}')" aria-controls="home" role="tab" data-toggle="tab">
-            <i class="fa fa-check-square-o"></i> {{coin}}</a>
+            <i class="fa fa-check-square-o" id="check-{{coin}}"> </i> {{coin}}</a>
     </li>
 </script>
 
@@ -208,7 +208,7 @@
 <script id="market-list-template" type="text/x-handlebars-template">
     <li class="active">
         <a href="javascript:addRemoveMarket('{{market}}')" aria-controls="home" role="tab" data-toggle="tab">
-            <i class="fa fa-check-square-o"></i> {{market}}</a>
+            <i class="fa fa-check-square-o" id="check-{{market}}"></i> {{market}}</a>
     </li>
 </script>
 
