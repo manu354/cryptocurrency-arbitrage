@@ -15,22 +15,38 @@ var checkedMarkets = {
         VRC: false
     };
 
+function addRemoveAll(coinsOrMarkets) {
+
+}
+
 
 function addRemoveCoin(coin) {
     checkedCoins[coin] = !checkedCoins[coin];
-    console.log(checkedCoins[coin]);
-    console.log(checkedCoins);
-    $('#check-' + coin).addClass('fa-check-square-o');
-    $('#check-' + coin).removeClass('fa-square-o');
+
+    if(checkedCoins[coin]){
+        $('#check-' + coin).addClass('fa-check-square-o');
+        $('#check-' + coin).removeClass('fa-square-o');
+    }
+    else {
+        $('#check-' + coin).removeClass('fa-check-square-o');
+        $('#check-' + coin).addClass('fa-square-o');
+    }
+
     useData();
 }
 
 function addRemoveMarket(market) {
     checkedMarkets[market] = !checkedMarkets[market];
-    console.log(checkedMarkets[market]);
-    console.log(checkedMarkets);
-    $('#check-' + market).addClass('fa-check-square-o');
-    $('#check-' + market).removeClass('fa-square-o');
+
+    if(checkedMarkets[market]){
+        $('#check-' + market).addClass('fa-check-square-o');
+        $('#check-' + market).removeClass('fa-square-o');
+    }
+    else {
+        $('#check-' + market).removeClass('fa-check-square-o');
+        $('#check-' + market).addClass('fa-square-o')
+    }
+
     useData();
 }
 
