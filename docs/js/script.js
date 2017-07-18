@@ -7,7 +7,7 @@ function history(coin1, coin2) {
 
 var checkedMarkets = {
         bittrex: true,
-        btc38: true
+        poloniex : true
 
     },
     checkedCoins = {
