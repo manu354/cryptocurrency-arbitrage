@@ -15,8 +15,9 @@ To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ , for developm
 * **v1.3.0** - ~~add the top 10 most popular cc markets manually.~~ [bugs](https://github.com/manu354/arbitrage/wiki/bugs-v1.3.0)
 * Current: **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
 * **v1.5.0** - ~~let users disable specific markets and coins.~~ TODO: addRemoveAll() and search through list 
-* **V1.5.1** - add  maximum volume for every opportunity
-* **V1.5.2** - design a movile view for the frontend
+* **V1.5.1** - peg BTC to USD for each exchange
+* **V1.5.2** - show maximum volume (maybe?) and highest bid / lowest ask for each opportunity
+* **V1.5.3** - design a movile view for the frontend
 * **v1.6.0** - add graphs with history of arbitrage opportunities for every coin. 
 * **v1.7.0** - account login/signup functionialty with passport to allow users to add their own markets.
 * **v2.0.0** - Implement a trading bot for atleast 2 markets.
