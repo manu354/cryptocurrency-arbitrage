@@ -70,9 +70,11 @@ function computePrices(data) {
         results = [];
         for (let coin in data) {
 
-            if (Object.keys(data[coin]).length > 1) {
-                coinNames.push(coin);
-                let arr = [];
+            if (Object.keys(data[coin]).length > 1){
+                if(coinNames.includes(coin) == false) coinNames.push(coin);
+
+
+            let arr = [];
                 for (let market in data[coin]) {
                     arr.push([data[coin][market], market]);
                 }

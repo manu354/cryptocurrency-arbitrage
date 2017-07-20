@@ -1318,7 +1318,7 @@ h1, h2, h3, h4, h5, h6 {
 #service .badhon-tab {
     float: left;
     list-style: none;
-    padding: 10px 10px 50px 50px;
+    padding: 10px 10px 50px 0;
     margin-top : 80px;
     margin-right: 50px;
     overflow : auto;
@@ -1394,7 +1394,6 @@ h1, h2, h3, h4, h5, h6 {
 #markets-title, #coins-title {
     content : 'fff';
     position: absolute;
-    margin-left: 45px;
     font-size:  1.4em;
     padding-bottom: 0;
     margin-bottom: 0;
