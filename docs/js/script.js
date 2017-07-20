@@ -225,7 +225,6 @@ $(window).load(function () {
     socket.on('results', function (results) {
         clearTimeout(waitForMoreData); //Every time we recieive new data clear the previous timeout so we don't loop through the data too many times unnecessarily...
         numberOfLoads++;
-        console.log(results);
         if (numberOfLoads === 1) { //...unless we haven't loaded the data yet, then just run useData() immediately.
             $('.socket-loader').hide(); // Hide the preloader.gif
             $('#highest, #lowest').show(); //Show The UL

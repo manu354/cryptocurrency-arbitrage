@@ -209,7 +209,7 @@ let markets = [
 						if(obj["MarketName"].includes('_BTC')) {
 							let coinName = obj["MarketName"].replace("_BTC", '');
 							if (!coin_prices[coinName]) coin_prices[coinName] = {};
-							coin_prices[coinName].bluetrade = obj.Last;
+							coin_prices[coinName].bleutrade = obj.Last;
                         }
                     }
                     res(coin_prices);
