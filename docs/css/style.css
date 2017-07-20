@@ -1399,11 +1399,14 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 0;
     margin-bottom: 0;
     top: 40px;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     color: #636C6C;
     padding-top: 20px
 }
 
+.search {
+    width : 100px;
+}
 #coins-title {
     top : 560px;
 }
