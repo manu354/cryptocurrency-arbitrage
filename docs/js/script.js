@@ -26,7 +26,8 @@ function addRemoveAll(coinsOrMarkets) {
             checkedMarkets[market] = !checkedMarkets.showAll;
             console.log(checkedMarkets[market]);
             addOne = false;
-            addRemoveMarket(market)
+            addRemoveMarket(market);
+            addOne = true;
 
         }
         useData();
@@ -34,10 +35,13 @@ function addRemoveAll(coinsOrMarkets) {
 
     if (coinsOrMarkets === 'coins') {
 
-        for (let coins in checkedCoins) {
-            checkedCoins[market] = !checkedCoins.showAll;
+        console.log(checkedCoins);
+        for (let coin in checkedCoins) {
+            checkedCoins[coin] = !checkedCoins.showAll;
+            console.log(checkedMarkets[coin]);
             addOne = false;
-            addRemoveMarket(market)
+            addRemoveMarket(coin)
+            addOne = true;
 
         }
         useData();

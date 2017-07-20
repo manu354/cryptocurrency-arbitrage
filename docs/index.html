@@ -166,8 +166,8 @@
                 <div class="block-bottom">
                     <div class="service-tab ">
                         <!-- Nav tabs -->
-
-                        <div class="market-names-list">
+                    <div class="left-panel col-md-4 col-xs-12">
+                        <div class="market-names-list col-md-12 col-xs-6">
                             <h1 id="markets-title">Markets: <input class="search" id="market-search"></h1>
                             <ul class="badhon-tab wow animated fadeInLeft" id="market-list" role="tablist">
                                 <li class="active">
@@ -175,9 +175,10 @@
                                         <i class="fa fa-check-square-o"></i>Loading...</a>
                                 </li>
                             </ul>
+                            <a class="remove-all" href="javascript:addRemoveAll('markets')">Check/Un-check all</a>
                         </div>
 
-                        <div class="coin-names-list">
+                        <div class="coin-names-list col-md-12 col-xs-6">
                             <h1 id="coins-title">Coins: <input class="search" id="coin-search"></h1>
 
                             <ul id='coin-list' class="badhon-tab wow animated fadeInLeft" role="tablist">
@@ -186,10 +187,12 @@
                                         <i class="fa fa-check-square-o"></i>Loading...</a>
                                 </li>
                             </ul>
+                            <a class="remove-all" href="javascript:addRemoveAll('coins')">Check/Un-check all</a>
                         </div>
+                    </div>
+
                         <!-- Tab panes -->
-                        <div class="tab-content edit-tab-content">
-                            <div class="tab-pane active edit-tab" id="home">
+                            <div class="tab-pane active edit-tab col-sm-8" id="home">
                                 <div class="app-pane">
                                     <h1>Highest price differences + pairs</h1>
                                     <p>Nunc accumsan hendrerit nunc, ac venenatis magna facilisis quis. Ut sit amet mi
@@ -201,7 +204,6 @@
                                 </div>
 
                             </div>
-                        </div>
                     </div>
                 </div>
             </div><!-- .col-md-12 close -->

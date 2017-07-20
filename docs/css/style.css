@@ -1407,8 +1407,9 @@ h1, h2, h3, h4, h5, h6 {
 .search {
     width : 100px;
 }
-#coins-title {
-    top : 560px;
+
+a.remove-all {
+    margin-left : 50px;
 }
 
 .coins-title {

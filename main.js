@@ -24,8 +24,9 @@ http.listen(port, function () {
 
 require('./settings.js')(); //Includes settings file.
 
+let coinNames = [];
 io.on('connection', function (socket) {
-    socket.emit('coinsAndMarkets', [marketNames, Object.keys(coin_prices)]);
+    socket.emit('coinsAndMarkets', [marketNames, coinNames]);
     socket.emit('results', results);
 });
 
@@ -70,6 +71,7 @@ function computePrices(data) {
         for (let coin in data) {
 
             if (Object.keys(data[coin]).length > 1) {
+                coinNames.push(coin);
                 let arr = [];
                 for (let market in data[coin]) {
                     arr.push([data[coin][market], market]);
