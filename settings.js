@@ -199,7 +199,7 @@ let markets = [
 	},
     
     {
-		marketName: 'bluetrade',
+		marketName: 'bleutrade',
 		URL: 'https://bleutrade.com/api/v2/public/getmarketsummaries', //URL To Fetch API From.
 		toBTCURL: false, //URL, if needed for an external bitcoin price api.
 		last: function (data, coin_prices) { //Get the last price of coins in JSON data
