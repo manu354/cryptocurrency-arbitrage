@@ -16,8 +16,10 @@ To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ , for developm
 * Current: **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
 * **v1.5.0** - ~~let users disable specific markets and coins.~~ ~~TODO: addRemoveAll() and search through list~~
 * **V1.5.1** - peg BTC to USD for each exchange
-* **V1.5.2** - More info tab: show maximum volume (maybe?) and highest bid / lowest ask for each opportunity
+* **V1.5.2** - more info tab: show maximum volume (maybe?) and highest bid / lowest ask for each opportunity
 * **V1.5.3** - design a movile view for the frontend
+* **V1.5.4** - don't show / warn about disabled coins on exchanges
+* **v1.5.5** - implement fees into the final profit
 * **v1.6.0** - add graphs with history of arbitrage opportunities for every coin. 
 * **v1.7.0** - account login/signup functionialty with passport to allow users to add their own markets.
 * **v2.0.0** - Implement a trading bot for atleast 2 markets.
@@ -43,7 +45,7 @@ the script will find the the highest price (chbtc.com), lowest price (bittrex), 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. A live website displaying the data will be available soon. 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
