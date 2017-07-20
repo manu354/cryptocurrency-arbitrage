@@ -11,7 +11,7 @@ var checkedMarkets = {
 
     },
     checkedCoins = {
-        showAll: true,
+        showAll: false,
         XZC: false,
         VRC: false
     };
@@ -35,12 +35,11 @@ function addRemoveAll(coinsOrMarkets) {
 
     if (coinsOrMarkets === 'coins') {
 
-        console.log(checkedCoins);
         for (let coin in checkedCoins) {
             checkedCoins[coin] = !checkedCoins.showAll;
-            console.log(checkedMarkets[coin]);
+            console.log(checkedCoins[coin]);
             addOne = false;
-            addRemoveMarket(coin)
+            addRemoveCoin(coin)
             addOne = true;
 
         }

@@ -1320,9 +1320,7 @@ h1, h2, h3, h4, h5, h6 {
     list-style: none;
     padding: 10px 10px 50px 0;
     margin-top : 80px;
-    margin-right: 50px;
     overflow : auto;
-    width : 300px;
 }
 #service .service-tab .badhon-tab::-webkit-scrollbar-track
 {
@@ -1355,6 +1353,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 20px;
     display: block;
     padding-right: 10px;
+    width : 240px;
 }
 
 #service .service-tab .badhon-tab li a i {
