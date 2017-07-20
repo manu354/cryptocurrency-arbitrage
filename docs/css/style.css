@@ -1319,7 +1319,6 @@ h1, h2, h3, h4, h5, h6 {
     float: left;
     list-style: none;
     padding: 10px 10px 50px 0;
-    margin-top : 80px;
     overflow : auto;
 }
 #service .service-tab .badhon-tab::-webkit-scrollbar-track
@@ -1393,7 +1392,6 @@ h1, h2, h3, h4, h5, h6 {
 
 #markets-title, #coins-title {
     content : 'fff';
-    position: absolute;
     font-size:  1.4em;
     padding-bottom: 0;
     margin-bottom: 0;
@@ -1408,7 +1406,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.remove-all {
-    margin-left : 50px;
+    font-size : 1.2em;
 }
 
 .coins-title {
@@ -1524,6 +1522,10 @@ i.cc {
     font-size : 30px;
     vertical-align: middle;
     padding : 0 20px 0 10px;
+}
+
+.coin-names-list, .market-names-list {
+    margin-top : 60px;
 }
 .coin-prices {
     margin: 0;
