@@ -168,6 +168,7 @@ $(window).load(function () {
     useData = function () {
         let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
+        let highestN = 1;
         highest.empty();  //Remove any previous data (LI) from UL
         for (let i = data.length - 1; i >= data.length - topN; i--) { //Loop through top 10
             let lowMarket = data[i][4], highMarket = data[i][5], pairIndex, coinName = data[i][0];
@@ -203,7 +204,7 @@ $(window).load(function () {
                         totalDiff: (((data[i][1] - 1) * 100) + ((data[pairIndex][1] - 1) * 100)).toFixed(2)
                     };
 
-                    if (i === data.length - 1) { //Add only the highest
+                    if (i === data.length - highestN) { //Add only the highest
                         $('.best-pair').empty();
                         let bestHTML = bestTemplate(context);
                         $('.best-pair').append(bestHTML);
@@ -213,12 +214,15 @@ $(window).load(function () {
                     let html = highTemplate(context);
                     highest.append(html);
                 }
-                else if (data.length - topN > 0)
+                else if (data.length - topN > 0) {
                     topN++;
+                    highestN++;
+                }
             }
 
             else if (data.length - topN > 0) {
                 topN++;
+                highestN++;
             }
         }
     }
