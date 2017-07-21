@@ -73,7 +73,7 @@ To run the program
 npm start
 ```
 
-In the terminal you will see an array of values ordered lowest to highest.  (Frontend coming soon)
+Go to localhost:3000 to see a minimal display of the raw data
 
 ## Adding and removing markets - [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market)
 
