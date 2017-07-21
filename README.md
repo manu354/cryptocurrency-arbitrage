@@ -73,13 +73,13 @@ To run the program
 npm start
 ```
 
-Go to localhost:3000 to see a minimal display of the raw data
+Go to ```localhost:3000``` to see a minimal display of the raw data
 
 ## Adding and removing markets - [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market)
 
 Currently you will have to add a market object with the correct settings in the array `markets`, situated in the `settings.js` file. I am updating the project every day and this will change soon.  (Will be able to add a market from the frontend soon)
 
-You can temporarily stop loading a market from the frontend (coming soon v1.5.0), or remove the market by deleting the object in `settings.js`
+You can temporarily stop loading a market from the frontend, or remove the market by deleting the object in `settings.js`
 
 For more information see the [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market) on adding markets.
 
