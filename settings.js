@@ -29,7 +29,6 @@ let markets = [
         marketName: 'cryptowatchAPI',
         URL: 'https://api.cryptowat.ch/markets/summaries', //URL To Fetch API From.
         toBTCURL: false, //URL, if needed for an external bitcoin price api.
-
         last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 try {
@@ -67,6 +66,7 @@ let markets = [
         marketName: 'bittrex',
         URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
         toBTCURL: false,
+        pairURL : '',
         last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 try {
@@ -93,7 +93,7 @@ let markets = [
         marketName: 'btc38',
         URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
         toBTCURL: false,
-
+        pairURL : '',
         last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 let priceOfBTC = data.btc.ticker.last;
@@ -120,7 +120,7 @@ let markets = [
         marketName: 'jubi',
         URL: 'https://www.jubi.com/api/v1/allticker/', //URL To Fetch API From.
         toBTCURL: false, //URL, if needed for an external bitcoin price api.
-
+        pairURL : '',
         last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 let priceOfBTC = data.btc.last;
@@ -150,6 +150,7 @@ let markets = [
         marketName: 'poloniex',
         URL: 'https://poloniex.com/public?command=returnTicker',
         toBTCURL: false,
+        pairURL : '',
         last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 try {
@@ -176,7 +177,8 @@ let markets = [
 		marketName: 'cryptopia',
 		URL: 'https://www.cryptopia.co.nz/api/GetMarkets/BTC', //URL To Fetch API From.
 		toBTCURL: false, //URL, if needed for an external bitcoin price api.
-		last: function (data, coin_prices) { //Get the last price of coins in JSON data
+        pairURL : '',
+        last: function (data, coin_prices) { //Get the last price of coins in JSON data
 			return new Promise(function (res, rej) {
 				try {
 					for (let obj of data.Data) {
@@ -202,7 +204,8 @@ let markets = [
 		marketName: 'bleutrade',
 		URL: 'https://bleutrade.com/api/v2/public/getmarketsummaries', //URL To Fetch API From.
 		toBTCURL: false, //URL, if needed for an external bitcoin price api.
-		last: function (data, coin_prices) { //Get the last price of coins in JSON data
+        pairURL : '',
+        last: function (data, coin_prices) { //Get the last price of coins in JSON data
 			return new Promise(function (res, rej) {
 				try {
 					for (let obj of data.result) {
@@ -228,7 +231,7 @@ let markets = [
 
 let marketNames = [];
 for(let i = 1; i < markets.length; i++) { // Loop except cryptowatch
-    marketNames.push(markets[i].marketName);
+    marketNames.push([markets[i].marketName, market[i].pairURL]);
 }
 console.log("Markets:", marketNames);
 module.exports = function () {
