@@ -130,9 +130,10 @@ $(window).load(function () {
             let coinSource = $("#coin-list-template").html(); //Source
             let coinTemplate = Handlebars.compile(coinSource); // ^ and template for coin and market lists
 
-
-            for (let i = data[1].length - 1; i >= 0; i--) { //Loop through coins
-                let context = {market: data[0][0][i], coin: data[1][i]}; //
+            let coinDataLen =  data[1].length;
+            console.log(data[0]);
+            for (let i = coinDataLen - 1; i >= 0; i--) { //Loop through coins
+                let context = {market: data[0][i][0], coin: data[1][i]}; //
                 let coin = context.coin, market = context.market;
                 if (data[0][i]) {
                     list.append(marketTemplate(context));
