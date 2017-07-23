@@ -13,8 +13,8 @@ To use, go to https://manu354.github.io/cryptocurrency-arbitrage/ , for developm
 * **v1.1.0** - ~~create api endpoints and display data on a minimal front end.~~
 * **v1.2.0** - ~~host server and implement websockets.~~
 * **v1.3.0** - ~~add the top 10 most popular cc markets manually.~~ [bugs](https://github.com/manu354/arbitrage/wiki/bugs-v1.3.0)
-* Current: **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
-* **v1.5.0** - ~~let users disable specific markets and coins.~~ ~~TODO: addRemoveAll() and search through list~~
+* **v1.4.0** - ~~make the frontend actually look like something, not just display the raw data~~
+* Current: **v1.5.0** - ~~let users disable specific markets and coins.~~ ~~TODO: addRemoveAll() and search through list~~
 * **V1.5.1** - peg BTC to USD for each exchange
 * **V1.5.2** - more info tab: show maximum volume (maybe?) and highest bid / lowest ask for each opportunity
 * **V1.5.3** - design a movile view for the frontend
@@ -73,13 +73,13 @@ To run the program
 npm start
 ```
 
-Go to localhost:3000 to see a minimal display of the raw data
+Go to ```localhost:3000``` to see a minimal display of the raw data
 
 ## Adding and removing markets - [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market)
 
 Currently you will have to add a market object with the correct settings in the array `markets`, situated in the `settings.js` file. I am updating the project every day and this will change soon.  (Will be able to add a market from the frontend soon)
 
-You can temporarily stop loading a market from the frontend (coming soon v1.5.0), or remove the market by deleting the object in `settings.js`
+You can temporarily stop loading a market from the frontend, or remove the market by deleting the object in `settings.js`
 
 For more information see the [wiki](https://github.com/manu354/arbitrage/wiki/How-to-add-a-market) on adding markets.
 
