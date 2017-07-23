@@ -22,45 +22,45 @@
 //
 //
 // }
-
+// {
+//     marketName: 'cryptowatchAPI',
+//     URL: 'https://api.cryptowat.ch/markets/summaries', //URL To Fetch API From.
+//     toBTCURL: false, //URL, if needed for an external bitcoin price api.
+//     last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
+//         return new Promise(function (res, rej) {
+//             try {
+//                 data = data.result;
+//                 for (let key in data) {
+//                     let marketPair = key.split(':');
+//                     let market = marketPair[0], pair = marketPair[1];
+//                     let indexOfBTC = pair.indexOf('btc');
+//                     if (indexOfBTC > 0 && !pair.includes('future') && !market.includes('qryptos') && !market.includes('quoine') && !market.includes('poloniex') && !market.includes('kraken')) {
+//                         if(marketNames.indexOf(market) === -1 ){
+//                             marketNames.push(market);
+//                             console.log(marketNames);
+//                         }
+//                         let coin = pair.replace(/btc/i, '').toUpperCase();
+//                         let price = data[key].price.last;
+//                         if(price > 0) {
+//                             if (!coin_prices[coin]) coin_prices[coin] = {};
+//                             coin_prices[coin][market] = price;
+//
+//                         }
+//                     }
+//                 }
+//                 res(coin_prices);
+//             }
+//             catch (err) {
+//                 console.log(err);
+//                 rej(err)
+//             }
+//         })
+//     }
+//
+// },
 
 let markets = [
-    // {
-    //     marketName: 'cryptowatchAPI',
-    //     URL: 'https://api.cryptowat.ch/markets/summaries', //URL To Fetch API From.
-    //     toBTCURL: false, //URL, if needed for an external bitcoin price api.
-    //     last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
-    //         return new Promise(function (res, rej) {
-    //             try {
-    //                 data = data.result;
-    //                 for (let key in data) {
-    //                     let marketPair = key.split(':');
-    //                     let market = marketPair[0], pair = marketPair[1];
-    //                     let indexOfBTC = pair.indexOf('btc');
-    //                     if (indexOfBTC > 0 && !pair.includes('future') && !market.includes('qryptos') && !market.includes('quoine') && !market.includes('poloniex') && !market.includes('kraken')) {
-    //                         if(marketNames.indexOf(market) === -1 ){
-    //                             marketNames.push(market);
-    //                             console.log(marketNames);
-    //                         }
-    //                         let coin = pair.replace(/btc/i, '').toUpperCase();
-    //                         let price = data[key].price.last;
-    //                         if(price > 0) {
-    //                             if (!coin_prices[coin]) coin_prices[coin] = {};
-    //                             coin_prices[coin][market] = price;
-    //
-    //                         }
-    //                     }
-    //                 }
-    //                 res(coin_prices);
-    //             }
-    //             catch (err) {
-    //                 console.log(err);
-    //                 rej(err)
-    //             }
-    //         })
-    //     }
-    //
-    // },
+
 
     {
         marketName: 'bittrex',
