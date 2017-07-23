@@ -268,7 +268,7 @@ let markets = [
 
 let marketNames = [];
 for(let i = 0; i < markets.length; i++) { // Loop except ~~cryptowatch~~ disable cryptowatch
-    marketNames.push([markets[i].marketName, markets[i].pairURL]);
+    marketNames.push([markets[i].marketName], [markets[i].pairURL]);
 }
 console.log("Markets:", marketNames);
 module.exports = function () {

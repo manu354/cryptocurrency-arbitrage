@@ -135,7 +135,7 @@ $(window).load(function () {
             for (let i = coinDataLen - 1; i >= 0; i--) { //Loop through coins
                 let context = {market: data[0][i][0], coin: data[1][i]}; //
                 let coin = context.coin, market = context.market;
-                if (data[0][i]) {
+                if (data[0][i][0]) {
                     list.append(marketTemplate(context));
                     if (checkedMarkets[market] === false || checkedMarkets[market] === undefined) {
                         checkedMarkets[market] = false;
