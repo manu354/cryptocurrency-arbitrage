@@ -19,8 +19,6 @@ var checkedMarkets = {
     };
 
 let addOne = true;
-let topN = $('.loadNumberInput').val();
-let initN = 1;
 
 function addRemoveAll(coinsOrMarkets) {
 
@@ -69,9 +67,11 @@ function addRemoveCoin(coin) {
 }
 
 function addRemoveMarket(market) {
-    if (addOne) checkedMarkets[market] = !checkedMarkets[market];
+    console.log("Trying to add/remove market")
+    if (addOne){ console.log("If add one"); checkedMarkets[market] = !checkedMarkets[market] };
 
     if (checkedMarkets[market]) {
+        console.log("If add one");
         $('#check-' + market).addClass('fa-check-square-o');
         $('#check-' + market).removeClass('fa-square-o');
     }
@@ -181,9 +181,10 @@ $(window).load(function () {
         useData();
     });
     useData = function () {
-
+        let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
         let highestN = 1;
+        let initN = 1;
         let dataLen = data.length;
         highest.empty();  //Remove any previous data (LI) from UL
         for (let i = dataLen - initN; i >= dataLen - topN; i--) { //Loop through top 10
