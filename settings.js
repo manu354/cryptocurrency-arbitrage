@@ -70,9 +70,8 @@ let markets = [
         return new Promise(function (res, rej) {  
             try {
                 for (let ticker in data) {
-                    let ticker = ticker.toUpperCase()
                     if(ticker.includes('-BTC')) {
-                        let coinName = ticker.replace("-BTC", '');
+                        let coinName = ticker.replace("-BTC", '').toUpperCase();
                         if (!coin_prices[coinName]) coin_prices[coinName] = {};
                         coin_prices[coinName].ccex = data[ticker].lastprice;
                     }
