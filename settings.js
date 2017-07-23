@@ -26,7 +26,7 @@
 
 let markets = [
     
-/*      {
+    {
       marketName: 'cryptowatchAPI',
         URL: 'https://api.cryptowat.ch/markets/summaries', //URL To Fetch API From.
         toBTCURL: false, //URL, if needed for an external bitcoin price api.
@@ -62,7 +62,7 @@ let markets = [
             })
         }
 
-    },*/
+    },
     {
     marketName: 'c-cex',
     URL: 'https://c-cex.com/t/prices.json', //URL To Fetch API From.
@@ -294,7 +294,7 @@ let markets = [
 
 let marketNames = [];
 let marketLen = markets.length //assiging len to variable so that evey loop it wont look up the makert length 
-for(let i = 0; i < marketLen; i++) { // Loop except cryptowatch
+for(let i = 1; i < marketLen; i++) { // Loop except cryptowatch
     marketNames.push(markets[i].marketName);
 }
 console.log("Markets:", marketNames);
