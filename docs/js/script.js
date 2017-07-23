@@ -4,7 +4,7 @@ function history(coin1, coin2) {
     alert('History graphs coming soon', coin1, coin2);
 }
 
-alert("Under mantainence, come back in an hour.");
+// alert("Under mantainence, come back in an hour.");
 
 var checkedMarkets = {
         showAll: true,
