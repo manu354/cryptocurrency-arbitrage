@@ -41,7 +41,6 @@ let markets = [
                         if (indexOfBTC > 0 && !pair.includes('future') && !market.includes('qryptos') && !market.includes('quoine') && !market.includes('poloniex') && !market.includes('kraken')) {
                             if(marketNames.indexOf(market) === -1 ){
                                 marketNames.push(market);
-                                console.log(marketNames);
                             }
                             let coin = pair.replace(/btc/i, '').toUpperCase();
                             let price = data[key].price.last;
@@ -71,15 +70,11 @@ let markets = [
         return new Promise(function (res, rej) {  
             try {
                 for (let ticker in data) {
-                    if(ticker.includes('-btc')) {
-                        let coinName = ticker.replace("-btc", '');
+                    let ticker = ticker.toUpperCase()
+                    if(ticker.includes('-BTC')) {
+                        let coinName = ticker.replace("-BTC", '');
                         if (!coin_prices[coinName]) coin_prices[coinName] = {};
-                        coin_prices[coinName].ccex = ticker.lastprice;
-                    }
-                    if(ticker.includes('btc-')) {
-                        let coinName = ticker.replace("btc-", '');
-                        if (!coin_prices[coinName]) coin_prices[coinName] = {};
-                        coin_prices[coinName].ccex = ticker.lastprice;
+                        coin_prices[coinName].ccex = data[ticker].lastprice;
                     }
                 }
                 res(coin_prices);
@@ -149,7 +144,7 @@ let markets = [
         last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 let priceOfBTC = data.btc.last;
-                console.log(priceOfBTC);
+                //console.log(priceOfBTC);
                 try {
                     for (let key in data) {
                         let coinName = key.toUpperCase();
@@ -160,7 +155,6 @@ let markets = [
                     }
                     res(coin_prices);
                 }
-
                 catch (err) {
                     console.log(err);
                     rej(err)
