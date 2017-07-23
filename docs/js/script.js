@@ -87,7 +87,9 @@ function remove(item, highOrLow) {
     let li = $(item).closest('li');
     let coin = li.attr("data-coin");
     let market = li.attr("data-market1");
-    checkedCoins[coin] = market;
+    checkedCoins[coin] = [];
+    checkedCoins[coin].push(market);
+    console.log("Removing item...", checkedCoins[coin]);
     useData();
 }
 
@@ -180,6 +182,24 @@ $(window).load(function () {
     $('.loadNumberInput').change(function () {
         useData();
     });
+    function allowedData(lowMarket, highMarket, coinName) {
+        if(checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName]){
+            if(Array.isArray(checkedCoins[coinName])) {
+                if(!checkedCoins[coinName].includes(lowMarket) && !checkedCoins[coinName].includes(highMarket)) {
+                    return true;
+                }
+                else return false;
+
+            }
+            else{
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
     useData = function () {
         let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
@@ -189,7 +209,8 @@ $(window).load(function () {
         highest.empty();  //Remove any previous data (LI) from UL
         for (let i = dataLen - initN; i >= dataLen - topN; i--) { //Loop through top 10
             let highMarket = data[i][4], lowMarket = data[i][5], pairIndex, coinName = data[i][0];
-            if (checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName] && checkedCoins[coinName] !== lowMarket && checkedCoins[coinName] !== highMarket) {
+            console.log(checkedCoins[coinName]);
+            if (allowedData(lowMarket, highMarket, coinName)) {
                 for (let j = data.length - 1; j >= 0; j--) {
                     if (
                         data[j][4] === highMarket //equal ...
@@ -198,8 +219,8 @@ $(window).load(function () {
                         && data[i][0] !== data[j][0] //and isnt the same coin as pair
                         && data[j][0] !== 'BTC' //and isnt BTC
                         && checkedCoins[data[j][0]] //and isnt remove
-                        && checkedCoins[data[j][0]] !== highMarket
-                        && checkedCoins[data[j][0]] !== lowMarket) // and isnt disabled
+                        && checkedCoins[data[j][0]][0] !== highMarket
+                        && checkedCoins[data[j][0]][0] !== lowMarket) // and isnt disabled
                     {
                         pairIndex = j;
                         break;
