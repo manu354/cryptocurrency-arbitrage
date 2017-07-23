@@ -232,6 +232,7 @@ let markets = [
         marketName: 'kraken', // kraken has no one size fits all market summery so each pair has to be entered as param in GET - will need to add new coins as they are added to exchange
         URL: 'https://api.kraken.com/0/public/Ticker?pair=DASHXBT,EOSXBT,GNOXBT,ETCXBT,ETHXBT,ICNXBT,LTCXBT,MLNXBT,REPXBT,XDGXBT,XLMXBT,XMRXBT,XRPXBT,ZECXBT', //URL To Fetch API From.
         toBTCURL: false, //URL, if needed for an external bitcoin price api.
+        pairURL : '',
         last: function (data, coin_prices) { //Get the last price of coins in JSON data
             return new Promise(function (res, rej) {
                 try {
@@ -267,7 +268,7 @@ let markets = [
 
 let marketNames = [];
 for(let i = 1; i < markets.length; i++) { // Loop except cryptowatch
-    marketNames.push([markets[i].marketName, market[i].pairURL]);
+    marketNames.push([markets[i].marketName, markets[i].pairURL]);
 }
 console.log("Markets:", marketNames);
 module.exports = function () {
