@@ -130,12 +130,13 @@ $(window).load(function () {
             let coinSource = $("#coin-list-template").html(); //Source
             let coinTemplate = Handlebars.compile(coinSource); // ^ and template for coin and market lists
 
-            let coinDataLen =  data[1].length;
-            console.log(data[0]);
-            for (let i = coinDataLen - 1; i >= 0; i--) { //Loop through coins
-                let context = {market: data[0][i][0], coin: data[1][i]}; //
-                let coin = context.coin, market = context.market;
-                if (data[0][i][0]) {
+            let coinDataLen = data[1].length;
+            for (let i = 0; i < coinDataLen; i++) { //Loop through coins
+                let context = {coin: data[1][i]};
+                let coin = context.coin;
+                if (data[0][i]) {
+                    context.market = data[0][i][0];
+                    let market = context.market;
                     list.append(marketTemplate(context));
                     if (checkedMarkets[market] === false || checkedMarkets[market] === undefined) {
                         checkedMarkets[market] = false;
