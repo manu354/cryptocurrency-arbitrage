@@ -2,7 +2,7 @@
 // let boilerPlateMarket =
 // {
 //     marketName: '',
-//     URL: '', //URL To Fetch API From.
+//     URL: '', //API URL To Fetch market prices from.
 //     toBTCURL: false, //URL, if needed for an external bitcoin price api.
 //     last: function (data, coin_prices) { //Get the last price of coins in JSON data
 //         return new Promise(function (res, rej) {
@@ -62,7 +62,34 @@ let markets = [
         }
 
     },
+    {
+    marketName: 'c-cex',
+    URL: 'https://c-cex.com/t/prices.json', //URL To Fetch API From.
+    toBTCURL: false, //URL, if needed for an external bitcoin price api.
 
+    last: function (data, coin_prices) { 
+        return new Promise(function (res, rej) {  
+            try {
+                for (let ticker in data) {
+                    if(ticker.includes('-btc')) {
+                        let coinName = ticker.replace("-btc", '');
+                        if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                        coin_prices[coinName].ccex = ticker.lastprice;
+                    }
+                    if(ticker.includes('btc-')) {
+                        let coinName = ticker.replace("btc-", '');
+                        if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                        coin_prices[coinName].ccex = ticker.lastprice;
+                    }
+                }
+                res(coin_prices);
+            } catch(err) {
+                console.log(err);
+                rej(err);
+            }
+            })
+        }
+    },
     {
         marketName: 'bittrex',
         URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
@@ -88,7 +115,6 @@ let markets = [
         },
 
     },
-
     {
         marketName: 'btc38',
         URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
@@ -115,7 +141,6 @@ let markets = [
             })
         }
     },
-
     {
         marketName: 'jubi',
         URL: 'https://www.jubi.com/api/v1/allticker/', //URL To Fetch API From.
@@ -144,8 +169,6 @@ let markets = [
         }
 
     },
-
-
     {
         marketName: 'poloniex',
         URL: 'https://poloniex.com/public?command=returnTicker',
@@ -170,8 +193,7 @@ let markets = [
             })
         },
 
-    },
-    
+    }, 
     {
 		marketName: 'cryptopia',
 		URL: 'https://www.cryptopia.co.nz/api/GetMarkets/BTC', //URL To Fetch API From.
@@ -196,8 +218,7 @@ let markets = [
 
             })
 		},
-	},
-    
+	},  
     {
 		marketName: 'bleutrade',
 		URL: 'https://bleutrade.com/api/v2/public/getmarketsummaries', //URL To Fetch API From.
@@ -223,7 +244,6 @@ let markets = [
             })
 		},
 	},
-	
 	{
 
         marketName: 'kraken', // kraken has no one size fits all market summery so each pair has to be entered as param in GET - will need to add new coins as they are added to exchange
@@ -259,11 +279,11 @@ let markets = [
             })
         },
     },
-
 ];
 
 let marketNames = [];
-for(let i = 1; i < markets.length; i++) { // Loop except cryptowatch
+let marketLen = markets.length //assiging len to variable so that evey loop it wont look up the makert length 
+for(let i = 1; i < marketLen; i++) { // Loop except cryptowatch
     marketNames.push(markets[i].marketName);
 }
 console.log("Markets:", marketNames);
