@@ -6,8 +6,9 @@ function history(coin1, coin2) {
 
 var checkedMarkets = {
         showAll: true,
-        bittrex: true,
-        poloniex: true
+        cexio: true,
+        'c-cex': true,
+        cryptopia: true,
 
     },
     checkedCoins = {
@@ -104,7 +105,7 @@ $(window).load(function () {
     $('#header').show();
 
 
-    let socket = io('https://ccarbitrage.azurewebsites.net/');
+    let socket = io('localhost:3000');
 
     let numberOfLoads = 0; //Number of final results loads
     let numberOfMLoads = 0; //Number of Market loadss

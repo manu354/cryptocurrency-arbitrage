@@ -15,7 +15,8 @@
   },
   "scripts": {
     "test": "node main",
-    "start": "node main"
+    "start": "pm2 start main.js", 
+    "dev": "pm2 start main.js --watch"
   },
   "repository": {
     "type": "git",

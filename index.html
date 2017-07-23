@@ -24,7 +24,8 @@
 
         socket.on('news', function (data) {
             $('#messages').empty();
-            for(var i = data.length-1; i >= 0 ; i--) {
+            let length = data.length
+            for(var i = 0; i < length ; i++) {
                 $('#messages').append($('<li>').text(data[i]));
             }
         });
