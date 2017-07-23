@@ -11,7 +11,7 @@
           content="A triangular arbitrage opportunity calculator for cryptocurrencies. Over 800 currencies and 50 markets. Make profit off this cryptocurrency arbitrage calculator now. Open source, free and on github."/>
     <meta name="Keywords"
           content="arbitrage-opportunity, trading-bot, bitcoin, litecoin, cryptocurrency, altcoins, ethereum">
-    <meta name="google-site-verification" content="0J-H247jFz8n1nJb2fwOqu0QLwskSMIjcNPmmcBsGfc" />
+    <meta name="google-site-verification" content="0J-H247jFz8n1nJb2fwOqu0QLwskSMIjcNPmmcBsGfc"/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -54,17 +54,24 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="fonts/cryptocoins.css">
     <link rel="stylesheet" href="fonts/cryptocoins-colors.css">
-    
-<link rel="canonical" href="https://manu354.github.io/cryptocurrency-arbitrage/">
+
+    <link rel="canonical" href="https://manu354.github.io/cryptocurrency-arbitrage/">
 
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-102296994-1', 'auto');
-    ga('send', 'pageview');
+        ga('create', 'UA-102296994-1', 'auto');
+        ga('send', 'pageview');
 
     </script>
 
@@ -166,44 +173,45 @@
                 <div class="block-bottom">
                     <div class="service-tab ">
                         <!-- Nav tabs -->
-                    <div class="left-panel col-md-4 col-xs-12  wow animated fadeInLeft">
-                        <div class="market-names-list col-md-12 col-xs-6">
-                            <h1 id="markets-title">Markets: <input class="search" id="market-search"></h1>
-                            <ul class="badhon-tab " id="market-list" role="tablist">
-                                <li class="active">
-                                    <a href="#" aria-controls="home" role="tab" data-toggle="tab">
-                                        <i class="fa fa-check-square-o"></i>Loading...</a>
-                                </li>
-                            </ul>
-                            <a class="remove-all" href="javascript:addRemoveAll('markets')">Check/Un-check all</a>
-                        </div>
+                        <div class="left-panel col-md-4 col-xs-12  wow animated fadeInLeft">
+                            <div class="market-names-list col-md-12 col-xs-6">
+                                <h1 id="markets-title">Markets: <input class="search" id="market-search"></h1>
+                                <ul class="badhon-tab " id="market-list" role="tablist">
+                                    <li class="active">
+                                        <a href="#" aria-controls="home" role="tab" data-toggle="tab">
+                                            <i class="fa fa-check-square-o"></i>Loading...</a>
+                                    </li>
+                                </ul>
+                                <a class="remove-all" href="javascript:addRemoveAll('markets')">Check/Un-check all</a>
+                            </div>
 
-                        <div class="coin-names-list col-md-12 col-xs-6">
-                            <h1 id="coins-title">Coins: <input class="search" id="coin-search"></h1>
+                            <div class="coin-names-list col-md-12 col-xs-6">
+                                <h1 id="coins-title">Coins: <input class="search" id="coin-search"></h1>
 
-                            <ul id='coin-list' class="badhon-tab" role="tablist">
-                                <li class="active">
-                                    <a href="#" aria-controls="home" role="tab" data-toggle="tab">
-                                        <i class="fa fa-check-square-o"></i>Loading...</a>
-                                </li>
-                            </ul>
-                            <a class="remove-all" href="javascript:addRemoveAll('coins')">Check/Un-check all</a>
+                                <ul id='coin-list' class="badhon-tab" role="tablist">
+                                    <li class="active">
+                                        <a href="#" aria-controls="home" role="tab" data-toggle="tab">
+                                            <i class="fa fa-check-square-o"></i>Loading...</a>
+                                    </li>
+                                </ul>
+                                <a class="remove-all" href="javascript:addRemoveAll('coins')">Check/Un-check all</a>
+                            </div>
                         </div>
-                    </div>
 
                         <!-- Tab panes -->
-                            <div class="tab-pane active edit-tab col-sm-8" id="home">
-                                <div class="app-pane">
-                                    <h1>Highest price differences + pairs</h1>
-                                    <p>Nunc accumsan hendrerit nunc, ac venenatis magna facilisis quis. Ut sit amet mi
-                                        ac <br/> neque sodales facilisis. Nullam tempus fermentum lorem nec interdum. Ut
-                                        id</p>
-                                    <p class="loadNumber"> Load top <input class="loadNumberInput" placeholder="5"> coins</p>
-                                    <div class="socket-loader"></div>
-                                    <ul id="highest"></ul>
-                                </div>
-
+                        <div class="tab-pane active edit-tab col-md-8 col-xs-12" id="home">
+                            <div class="app-pane">
+                                <h1>Highest price differences + pairs</h1>
+                                <p>Nunc accumsan hendrerit nunc, ac venenatis magna facilisis quis. Ut sit amet mi
+                                    ac <br/> neque sodales facilisis. Nullam tempus fermentum lorem nec interdum. Ut
+                                    id</p>
+                                <p class="loadNumber"> Load top <input class="loadNumberInput" placeholder="5"> coins
+                                </p>
+                                <div class="socket-loader"></div>
+                                <ul id="highest"></ul>
                             </div>
+
+                        </div>
                     </div>
                 </div>
             </div><!-- .col-md-12 close -->
@@ -228,7 +236,7 @@
 </script>
 
 <script id="high-template" type="text/x-handlebars-template">
-    <li class="coin-info-high ">
+    <li class="coin-info-high " data-coin="{{coin}}" data-market1="{{market1}}" data-market2="{{market2}}">
         <h1>Transfer <strong>{{coin}}</strong> from <strong>{{market1}}</strong> to <strong> {{market2}}</strong> for a
             profit of
             <strong> {{diff}}%</strong></h1>
@@ -242,9 +250,10 @@
                 <a>{{market2}}</a>: {{market2price}}<span class="mBTC">mBTC</span>
             </p>
         </div>
-        <a href="javascript:history('{{coin}}');">Show history</a>
+        <a href="javascript:history('{{coin}}');">Show history</a> <a class="remove" href="#!" onclick="remove(this, 'high')">
+        Remove this opportunity </a>
     </li>
-    <div class="coin-info-low">
+    <li class="coin-info-low" data-coin="{{pair.coin}}" data-market1="{{pair.market1}}" data-market2="{{pair-market2}}">
         <h1>sell for <strong>{{pair.coin}}</strong> and transfer back to <strong> {{pair.market2}}
             ({{pair.diff}}%)</strong>
         </h1>
@@ -257,8 +266,9 @@
                     class="mBTC">mBTC</span>
             </p>
         </div>
-        <a href="javascript:history({{pair.coin}}');">Show history</a>
-    </div>
+        <a href="javascript:history({{pair.coin}}');">Show history</a> <a class="remove" href="#!" onclick="remove(this, 'low')">Remove
+        this opportunity</a>
+    </li>
 </script>
 
 <script id="best-template" type="text/x-handlebars-template">
@@ -539,7 +549,6 @@
 <!--</ul>-->
 <!--</nav>-->
 <!--</div>-->
-
 
 
 <script defer src="js/jquery-1.11.2.min.js"></script>

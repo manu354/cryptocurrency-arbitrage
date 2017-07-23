@@ -12,11 +12,13 @@ var checkedMarkets = {
     },
     checkedCoins = {
         showAll: false,
-        XZC: false,
-        VRC: false
+        TIC: false,
+        PLC: false
     };
 
 let addOne = true;
+let topN = $('.loadNumberInput').val();
+let initN = 1;
 
 function addRemoveAll(coinsOrMarkets) {
 
@@ -77,6 +79,14 @@ function addRemoveMarket(market) {
     }
 
     if (addOne) useData();
+}
+
+function remove(item, highOrLow) {
+    let li = $(item).closest('li');
+    let coin = li.attr("data-coin");
+    let market = li.attr("data-market1");
+    checkedCoins[coin] = market;
+    useData();
 }
 
 function searchMarketsOrCoins(marketOrCoin, input) {
@@ -166,13 +176,14 @@ $(window).load(function () {
         useData();
     });
     useData = function () {
-        let topN = $('.loadNumberInput').val();
+
         if (!topN) topN = 5;
         let highestN = 1;
+        let dataLen = data.length;
         highest.empty();  //Remove any previous data (LI) from UL
-        for (let i = data.length - 1; i >= data.length - topN; i--) { //Loop through top 10
-            let lowMarket = data[i][4], highMarket = data[i][5], pairIndex, coinName = data[i][0];
-            if (checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName]) {
+        for (let i = dataLen - initN; i >= dataLen - topN; i--) { //Loop through top 10
+            let highMarket = data[i][4], lowMarket = data[i][5], pairIndex, coinName = data[i][0];
+            if (checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName] && checkedCoins[coinName] !== lowMarket && checkedCoins[coinName] !== highMarket) {
                 for (let j = data.length - 1; j >= 0; j--) {
                     if (
                         data[j][4] === highMarket //equal ...
@@ -180,7 +191,10 @@ $(window).load(function () {
 
                         && data[i][0] !== data[j][0] //and isnt the same coin as pair
                         && data[j][0] !== 'BTC' //and isnt BTC
-                        && checkedCoins[data[j][0]]) {
+                        && checkedCoins[data[j][0]] //and isnt remove
+                        && checkedCoins[data[j][0]] !== highMarket
+                        && checkedCoins[data[j][0]] !== lowMarket) // and isnt disabled
+                    {
                         pairIndex = j;
                         break;
                     }
@@ -190,9 +204,9 @@ $(window).load(function () {
                         coin: data[i][0],
                         diff: ((data[i][1] - 1) * 100).toFixed(2),
                         market2price: (data[i][2] * 1000).toPrecision(3),
-                        market2: lowMarket,
+                        market2: highestN,
                         market1price: (data[i][3] * 1000).toPrecision(3),
-                        market1: highMarket,
+                        market1: lowMarket,
                         pair: {
                             coin: data[pairIndex][0],
                             diff: ((data[pairIndex][1] - 1) * 100).toFixed(2),

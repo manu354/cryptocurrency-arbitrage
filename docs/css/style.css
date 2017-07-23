@@ -1515,6 +1515,10 @@ i.cc {
     font-size : 50px;
 
 }
+
+.remove {
+    margin-left : 30px;
+}
 .coin-name {
 
     margin: 0;
