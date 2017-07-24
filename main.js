@@ -130,6 +130,6 @@ pm2.connect(function(err) {
     setTimeout(function worker() {
         console.log("Restarting app...");
         pm2.restart('main', function() {});
-        setTimeout(worker, 600000);
-    }, 600000);
+        setTimeout(worker, 3600000);
+    }, 3600000);
 });
