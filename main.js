@@ -5,6 +5,8 @@
 
 'use strict';
 
+console.log('Starting app...');
+
 const request = require('request'), Promise = require("bluebird"); //request for pulling JSON from api. Bluebird for Promises.
 
 const app = require('express')(), helmet = require('helmet'), http = require('http').Server(app), io = require('socket.io')(http); // For websocket server functionality
@@ -117,3 +119,17 @@ function computePrices(data) {
 // .then(v => {
 //        // console.log(v);
 //    });
+
+
+
+let pm2 = require('pm2'); //RESTART SERVER EVERY HOUR
+
+pm2.connect(function(err) {
+    if (err) throw err;
+    console.log("CONNECTED")
+    setTimeout(function worker() {
+        console.log("Restarting app...");
+        pm2.restart('main', function() {});
+        setTimeout(worker, 600000);
+    }, 600000);
+});
