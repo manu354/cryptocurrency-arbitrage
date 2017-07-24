@@ -10,12 +10,14 @@
     "bluebird": "^3.5.0",
     "express": "^4.15.3",
     "helmet": "^3.6.1",
+    "pm2": "^2.6.1",
     "request": "^2.81.0",
     "socket.io": "^2.0.3"
   },
   "scripts": {
+    "preinstall": "npm install pm2 -g",
     "test": "node main",
-    "start": "node main"
+    "start": "pm2 start main.js -i max --attach --max-memory-restart 50M"
   },
   "repository": {
     "type": "git",

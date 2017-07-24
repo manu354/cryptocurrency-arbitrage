@@ -5,6 +5,8 @@
 
 'use strict';
 
+console.log('Starting app...');
+
 const request = require('request'), Promise = require("bluebird"); //request for pulling JSON from api. Bluebird for Promises.
 
 const app = require('express')(), helmet = require('helmet'), http = require('http').Server(app), io = require('socket.io')(http); // For websocket server functionality
