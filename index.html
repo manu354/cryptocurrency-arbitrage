@@ -22,11 +22,11 @@
     $(function () {
         var socket = io();
 
-        socket.on('news', function (data) {
+        socket.on('results', function (data) {
             $('#messages').empty();
             let length = data.length
             for(var i = 0; i < length ; i++) {
-                $('#messages').append($('<li>').text(data[i]));
+                $('#messages').append($('<li>').text(JSON.stringify(data[i])));
             }
         });
     });

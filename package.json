@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.0",
+    "decimal.js": "^7.2.3",
     "express": "^4.15.3",
     "helmet": "^3.6.1",
     "request": "^2.81.0",
@@ -15,8 +16,8 @@
   },
   "scripts": {
     "test": "node main",
-    "start": "pm2 start main.js", 
-    "dev": "pm2 start main.js --watch"
+    "start": "pm2 start main.js",
+    "dev": "pm2 start main.js --watch --log ./pm2-log --ignore-watch ./pm2-log"
   },
   "repository": {
     "type": "git",

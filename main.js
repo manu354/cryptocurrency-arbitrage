@@ -5,8 +5,8 @@
 'use strict';
 
 const request = require('request'),
-    Promise = require("bluebird"); //request for pulling JSON from api. Bluebird for Promises.
-
+    Promise = require("bluebird"), //request for pulling JSON from api. Bluebird for Promises.
+    BigNum = require('decimal.js');
 const app = require('express')(),
     helmet = require('helmet'),
     http = require('http').Server(app),
@@ -34,7 +34,7 @@ let coin_prices = {},
     numberOfRequests = 0, 
     results = []; // GLOBAL variables to get pushed to browser.
 io.on('connection', function (socket) {
-    socket.emit('coinsAndMarkets', [marketNames, coinNames]);
+    socket.emit('coinsAndMarkets', {"marketNames" : marketNames, 'coinNames' : coinNames});
     socket.emit('results', results);
 });
 
@@ -51,8 +51,9 @@ function getMarketData(options, coin_prices, callback) { //GET JSON DATA
                 try {
                     data = JSON.parse(body);
                 } catch(error) {
-                    console.log("Error getting JSON response from", options.URL, error); //Throws error
-                    throw new Error(error)
+                    console.log("Error parsing JSON response from", options.URL, error); //Throws error
+                    console.log("skipping"); //Throws error
+                    //next()
                 }
                 if (options.marketName) {
                     let newCoinPrices;
@@ -65,10 +66,8 @@ function getMarketData(options, coin_prices, callback) { //GET JSON DATA
 }
 
 async function computePrices(data) {
-    //console.log('computiing price ' + data )
     if (numberOfRequests >= 2) {
         results = [];
-
         for (let coin in data) {
             if (Object.keys(data[coin]).length > 1){
                 if(coinNames.includes(coin) == false) {
@@ -76,21 +75,30 @@ async function computePrices(data) {
                 }
                 let arr = [];
                 for (let market in data[coin]) {
-                    arr.push([data[coin][market], market]);
+                    arr.push({"lastPrice" : new BigNum(data[coin][market]), "market": market});
                 }
                 arr.sort(function (a, b) {
-                    return a[0] - b[0];
+                    return b.lastPrice.minus(a.lastPrice);
                 });
-                for (let i = 0; i < arr.length; i++) {
-                    for (let j = i + 1; j < arr.length; j++) {
-                        results.push([coin, arr[i][0] / arr[j][0], arr[i][0], arr[j][0], arr[i][1], arr[j][1] ], [coin, arr[j][0] / arr[i][0], arr[j][0], arr[i][0], arr[j][1], arr[i][1]]);
+                let arrLen = arr.length 
+                for (let i = 0; i < arrLen - 1; i++) {
+                    for (let j = i + 1; j < arrLen; j++) {
+                        results.push({
+                            ticker : coin, 
+                            spread : arr[i].lastPrice.dividedBy(arr[j].lastPrice).toString(), 
+                            lastPriceA : arr[i].lastPrice, 
+                            lastPriceB : arr[j].lastPrice,
+                            marketA : arr[i].market, 
+                            marketB : arr[j].market
+                        });
                     }
                 }
             }
         }
-        results.sort(function (a, b) {
+        // ??
+  /*      results.sort(function (a, b) {
             return a[1] - b[1];
-        });
+        });*/
         return results
     }
 }
@@ -110,19 +118,18 @@ async function computePrice(tickers) {
 }
 
 async function main() {
-    Promise.all( 
-        getTickerData(markets))
+    Promise.all(getTickerData(markets))
     .then(results => {
-        console.log('numberOfRequests ' + numberOfRequests);
          return computePrice(results)
     })
-    .catch(error => console.log( error))
+    .catch(error => console.log("error " + error))
     .then(results => {
         results.map((result)=> {
             io.emit('results', result);
         })        
-    }).catch(error => console.log( error))
+    })
+    .catch(error => console.log("error " + error))
     
-    setTimeout(main, 20000);
+    setTimeout(main, 25000);
 };
 main()

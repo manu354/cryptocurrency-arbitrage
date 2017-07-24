@@ -4,7 +4,6 @@
   font-family: "cryptocoins-icons";
   src: url('./cryptocoins-icons.eot');
   src: url('./cryptocoins-icons.eot?#iefix') format('eot'),
-    url('./cryptocoins-icons.woff2') format('woff2'),
     url('./cryptocoins-icons.woff') format('woff'),
     url('./cryptocoins-icons.ttf') format('truetype'),
     url('./cryptocoins-icons.svg#cryptocoins-icons') format('svg');

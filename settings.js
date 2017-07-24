@@ -61,7 +61,30 @@
 
 let markets = [
 
-
+    { 
+        marketName: 'c-cex', 
+        URL: 'https://c-cex.com/t/prices.json', //URL To Fetch API From. 
+        toBTCURL: false, //URL, if needed for an external bitcoin price api. 
+        link: 'https://c-cex.com/', 
+        pairURL : '',
+        last: function (data, coin_prices) {  
+            return new Promise(function (res, rej) {   
+                try { 
+                    for (let ticker in data) { 
+                        ticker.toUpperCase() 
+                        if(ticker.includes('-BTC')) { 
+                            let coinName = ticker.replace("-BTC", ''); 
+                            if (!coin_prices[coinName]) coin_prices[coinName] = {}; 
+                            coin_prices[coinName].ccex = data[ticker].lastprice; 
+                        } 
+                    } 
+                    res(coin_prices); 
+                } catch(err) {  
+                    rej(err);
+                } 
+            }) 
+        } 
+    },
     {
         marketName: 'bittrex',
         URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
@@ -124,7 +147,6 @@ let markets = [
         last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 let priceOfBTC = data.btc.last;
-                console.log(priceOfBTC);
                 try {
                     for (let key in data) {
                         let coinName = key.toUpperCase();
@@ -268,7 +290,7 @@ let markets = [
 
 let marketNames = [];
 for(let i = 0; i < markets.length; i++) { // Loop except ~~cryptowatch~~ disable cryptowatch
-    marketNames.push([[markets[i].marketName], [markets[i].pairURL]]);
+    marketNames.push({marketName: markets[i].marketName, pairURL: markets[i].pairURL});
 }
 console.log("Markets:", marketNames);
 module.exports = function () {
