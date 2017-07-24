@@ -237,9 +237,9 @@ $(window).load(function () {
                         pair: {
                             coin: data[pairIndex][0],
                             diff: ((data[pairIndex][1] - 1) * 100).toFixed(2),
-                            market2price: (data[pairIndex][2] * 1000).toPrecision(3),
+                            market1price: (data[pairIndex][2] * 1000).toPrecision(3),
                             market2: data[pairIndex][4],
-                            market1price: (data[pairIndex][3] * 1000).toPrecision(3),
+                            market2price: (data[pairIndex][3] * 1000).toPrecision(3),
                             market1: data[pairIndex][5],
                         },
                         totalDiff: (((data[i][1] - 1) * 100) + ((data[pairIndex][1] - 1) * 100)).toFixed(2)
