@@ -60,7 +60,6 @@
 // },
 
 let markets = [
-
     { 
         marketName: 'c-cex', 
         URL: 'https://c-cex.com/t/prices.json', //URL To Fetch API From. 
@@ -70,16 +69,16 @@ let markets = [
         last: function (data, coin_prices) {  
             return new Promise(function (res, rej) {   
                 try { 
-                    for (let ticker in data) { 
-                        ticker.toUpperCase() 
-                        if(ticker.includes('-BTC')) { 
-                            let coinName = ticker.replace("-BTC", ''); 
+                    for (let ticker in data) {
+                        if(ticker.includes('-btc')) { 
+                            let coinName = ticker.replace("-btc", '').toUpperCase(); 
                             if (!coin_prices[coinName]) coin_prices[coinName] = {}; 
                             coin_prices[coinName].ccex = data[ticker].lastprice; 
                         } 
                     } 
                     res(coin_prices); 
                 } catch(err) {  
+                    console.log(err);
                     rej(err);
                 } 
             }) 

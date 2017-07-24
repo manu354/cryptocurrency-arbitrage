@@ -46,14 +46,14 @@ function getMarketData(options, coin_prices, callback) { //GET JSON DATA
                 let data
                 if(error) {
                     console.log("Error getting JSON response from", options.URL, error); //Throws error
-                    throw new Error('error ' + error)    
+                    reject(new Error(error))    
                 }
                 try {
                     data = JSON.parse(body);
                 } catch(error) {
                     console.log("Error parsing JSON response from", options.URL, error); //Throws error
                     console.log("skipping"); //Throws error
-                    //next()
+                    reject(new Error(error))
                 }
                 if (options.marketName) {
                     let newCoinPrices;
@@ -68,6 +68,7 @@ function getMarketData(options, coin_prices, callback) { //GET JSON DATA
 async function computePrices(data) {
     if (numberOfRequests >= 2) {
         results = [];
+
         for (let coin in data) {
             if (Object.keys(data[coin]).length > 1){
                 if(coinNames.includes(coin) == false) {
@@ -80,56 +81,50 @@ async function computePrices(data) {
                 arr.sort(function (a, b) {
                     return b.lastPrice.minus(a.lastPrice);
                 });
-                let arrLen = arr.length 
-                for (let i = 0; i < arrLen - 1; i++) {
-                    for (let j = i + 1; j < arrLen; j++) {
-                        results.push({
-                            ticker : coin, 
-                            spread : arr[i].lastPrice.dividedBy(arr[j].lastPrice).toString(), 
-                            lastPriceA : arr[i].lastPrice, 
-                            lastPriceB : arr[j].lastPrice,
-                            marketA : arr[i].market, 
-                            marketB : arr[j].market
-                        });
+                let arrLen = arr.length
+                
+                if(arrLen > 1) {
+                    for (let i = 0; i < arrLen - 1; i++) {
+                        for (let j = i + 1; j < arrLen; j++) {
+                            results.push({
+                                ticker : coin, 
+                                spread : arr[i].lastPrice.dividedBy(arr[j].lastPrice).toString(), 
+                                lastPriceA : arr[i].lastPrice, 
+                                lastPriceB : arr[j].lastPrice,
+                                marketA : arr[i].market, 
+                                marketB : arr[j].market
+                            });
+                        }
                     }
-                }
+                } 
             }
         }
-        // ??
-  /*      results.sort(function (a, b) {
-            return a[1] - b[1];
-        });*/
         return results
     }
 }
 
-async function getTickerData(urls) {
-    return Promise.all(urls.map(function(url) {
-        return getMarketData(url, coin_prices).reflect()
-    })).filter(function(promise) {
-        return promise.isFulfilled();
-    })
+async function getTickerData(markets) {
+    return Promise.all(markets.map((market) => {
+        return  getMarketData(market, coin_prices).reflect()
+    }))
 }
-async function computePrice(tickers) {
-    return Promise.all(tickers.map((ticker) => {
+async function computePrice(coin_prices) {     
+    return Promise.all(coin_prices.map((ticker) => {
             return computePrices(ticker.value())
         })
     )
 }
 
 async function main() {
-    Promise.all(getTickerData(markets))
-    .then(results => {
-         return computePrice(results)
-    })
-    .catch(error => console.log("error " + error))
-    .then(results => {
-        results.map((result)=> {
-            io.emit('results', result);
-        })        
-    })
-    .catch(error => console.log("error " + error))
-    
-    setTimeout(main, 25000);
+
+    let results  = await getTickerData(markets)
+    .then(() => {
+         return computePrices(coin_prices)
+    }).then((prices) =>{
+        //emit everyting at once... Should be changed to emiting only changed prices
+        io.emit('results', prices);
+    }).catch(error => console.log("error " + error))
+
+    setTimeout(main, 15000);    
 };
 main()

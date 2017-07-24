@@ -204,6 +204,11 @@ $(window).load(function () {
     }
 
     useData = function () {
+        //bootstrap if theres no data yet
+        if (!data[0]) {setTimeout(() => {
+          useData()
+        }, 200)}
+            
         let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
         let highestN = 1;
@@ -215,37 +220,19 @@ $(window).load(function () {
             return b.spread - a.spread
         })
         let bestSpread = findBestSpread(sortedBySpread, topN)
-        
-        bestSpreadDiv.empty();  //Remove any previous data (LI) from UL
-        let bestSpreadHTML = bestSpreadTemplate({
-            coin : bestSpread[0].ticker,
-            marketA: bestSpread[0].marketA,
-            market1price: bestSpread[0].lastPriceA,
-            market2price: bestSpread[0].lastPriceB,
-            marketB: bestSpread[0].marketB,
-            diff: ((bestSpread[0].spread - 1) * 100).toFixed(2),
-        });
-        bestSpreadDiv.append(bestSpreadHTML);
+        if(bestSpread[0] != null) {
+            bestSpreadDiv.empty();  //Remove any previous data (LI) from UL
+            let bestSpreadHTML = bestSpreadTemplate({
+                coin : bestSpread[0].ticker,
+                marketA: bestSpread[0].marketA,
+                market1price: bestSpread[0].lastPriceA,
+                market2price: bestSpread[0].lastPriceB,
+                marketB: bestSpread[0].marketB,
+                diff: ((bestSpread[0].spread - 1) * 100).toFixed(2),
+            });
+            bestSpreadDiv.append(bestSpreadHTML);    
+        }
 
-        
-
-    /*<h1 class="best-pair-title">Profit: <strong>{{totalDiff}}%</strong></h1>
-    <div class="coin-info">
-        <div class="coin-info-high">
-            <h1>Transfer <strong>{{coin}}</strong> from <strong>{{marketB}}</strong> to
-                <strong>{{marketA}}</strong><strong>
-                    ({{diff}}%)</strong>
-            </h1>
-            <div class="coin">
-                <i class="cc-{{coin}} {{coin}} cc"> </i>
-                <p class="coin-name">{{coin}}</p>
-                <p class="coin-prices">{{diff}}%</p>
-                <p class="coin-markets"><a>{{marketB}}</a>: {{market2price}} <i class="fa fa-long-arrow-right"></i> <a>{{marketA}}</a>:
-                    {{market1price}}
-                </p>
-            </div>
-        </div>
-    </div>*/
         for (let i = dataLen - initN; i >= dataLen - topN; i--) { //Loop through top 10
             let highMarket = data[i].marketA, 
                 lowMarket = data[i].marketB, 
