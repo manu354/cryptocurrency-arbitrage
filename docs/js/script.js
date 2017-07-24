@@ -4,8 +4,6 @@ function history(coin1, coin2) {
     alert('History graphs coming soon', coin1, coin2);
 }
 
-// alert("Under mantainence, come back in an hour.");
-
 var checkedMarkets = {
         showAll: true,
         bittrex: true,
@@ -21,33 +19,27 @@ var checkedMarkets = {
 let addOne = true;
 
 function addRemoveAll(coinsOrMarkets) {
-
     if (coinsOrMarkets === 'markets') {
-
         for (let market in checkedMarkets) {
             checkedMarkets[market] = !checkedMarkets.showAll;
             console.log(checkedMarkets[market]);
             addOne = false;
             addRemoveMarket(market);
             addOne = true;
-
         }
         useData();
     }
 
     if (coinsOrMarkets === 'coins') {
-
         for (let coin in checkedCoins) {
             checkedCoins[coin] = !checkedCoins.showAll;
             console.log(checkedCoins[coin]);
             addOne = false;
             addRemoveCoin(coin)
             addOne = true;
-
         }
         useData();
     }
-
 }
 
 
@@ -67,11 +59,9 @@ function addRemoveCoin(coin) {
 }
 
 function addRemoveMarket(market) {
-    console.log("Trying to add/remove market")
     if (addOne){ console.log("If add one"); checkedMarkets[market] = !checkedMarkets[market] };
 
     if (checkedMarkets[market]) {
-        console.log("If add one");
         $('#check-' + market).addClass('fa-check-square-o');
         $('#check-' + market).removeClass('fa-square-o');
     }
@@ -89,7 +79,6 @@ function remove(item, highOrLow) {
     let market = li.attr("data-market1");
     if (!Array.isArray(checkedCoins[coin])) checkedCoins[coin]= [];
     checkedCoins[coin].push(market);
-    console.log("Removing item...", checkedCoins[coin]);
     useData();
 }
 
@@ -105,8 +94,6 @@ function searchMarketsOrCoins(marketOrCoin, input) {
             (text.indexOf(input) >= 0) ? $(this).show() : $(this).hide();
         });
     }
-
-
 }
 
 let useData;
@@ -117,8 +104,7 @@ $(window).load(function () {
     $('.loader').hide();
     $('#header').show();
 
-
-    let socket = io('https://ccarbitrage.azurewebsites.net/');
+    let socket = io('http://localhost:3000/');
 
     let numberOfLoads = 0; //Number of final results loads
     let numberOfMLoads = 0; //Number of Market loadss
@@ -134,12 +120,12 @@ $(window).load(function () {
             let coinSource = $("#coin-list-template").html(); //Source
             let coinTemplate = Handlebars.compile(coinSource); // ^ and template for coin and market lists
 
-            let coinDataLen = data[1].length;
+            let coinDataLen = data.marketNames.length;
             for (let i = 0; i < coinDataLen; i++) { //Loop through coins
-                let context = {coin: data[1][i]};
+                let context = {coin: data.coinNames[i]};
                 let coin = context.coin;
-                if (data[0][i]) {
-                    context.market = data[0][i][0];
+                if (data.coinNames[i]) {
+                    context.market = data.marketNames[i].marketName;
                     let market = context.market;
                     list.append(marketTemplate(context));
                     if (checkedMarkets[market] === false || checkedMarkets[market] === undefined) {
@@ -152,8 +138,8 @@ $(window).load(function () {
                 coinList.append(coinTemplate(context));
                 if (checkedCoins[coin] === undefined) checkedCoins[coin] = true;
                 else {
-                    $('#check-' + coin).removeClass('fa-check-square-o');
-                    $('#check-' + coin).addClass('fa-square-o');
+                    $('#check-' + JSON.stringify(coin)).removeClass('fa-check-square-o');
+                    $('#check-' + JSON.stringify(coin)).addClass('fa-square-o');
                 }
             }
             numberOfMLoads++;
@@ -166,6 +152,10 @@ $(window).load(function () {
 
     let bestSource = $("#best-template").html();
     let bestTemplate = Handlebars.compile(bestSource);
+
+    let bestSpreadDiv = $('.best-spread');
+    let bestSpreadSource = $("#highestSpread-template").html();
+    let bestSpreadTemplate = Handlebars.compile(bestSpreadSource);
 
     var data;
 
@@ -189,7 +179,6 @@ $(window).load(function () {
                     return true;
                 }
                 else return false;
-
             }
             else{
                 return true;
@@ -199,50 +188,91 @@ $(window).load(function () {
             return false;
         }
     }
+    function findBestSpread(data, topN) {
+        let bestSpread = []
+        let dataLen = data.length;
+        for (let i = 0; i < dataLen; i++) {  //Loop through top n by spread
+            let marketA = data[i].marketA
+            let marketB = data[i].marketB
+            let pairIndex
+            let coinName = data[i].ticker;
+            if (allowedData(marketA, marketB, coinName)) {
+                bestSpread.push(data[i])
+            } 
+        }
+        return bestSpread
+    }
 
     useData = function () {
+        //bootstrap if theres no data yet
+        if (!data[0]) {setTimeout(() => {
+          useData()
+        }, 200)}
+            
         let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
         let highestN = 1;
         let initN = 1;
         let dataLen = data.length;
-        highest.empty();  //Remove any previous data (LI) from UL
+        
+        
+        let sortedBySpread = data.sort(function(a,b) {
+            return b.spread - a.spread
+        })
+        let bestSpread = findBestSpread(sortedBySpread, topN)
+        if(bestSpread[0] != null) {
+            bestSpreadDiv.empty();  //Remove any previous data (LI) from UL
+            let bestSpreadHTML = bestSpreadTemplate({
+                coin : bestSpread[0].ticker,
+                marketA: bestSpread[0].marketA,
+                market1price: bestSpread[0].lastPriceA,
+                market2price: bestSpread[0].lastPriceB,
+                marketB: bestSpread[0].marketB,
+                diff: ((bestSpread[0].spread - 1) * 100).toFixed(2),
+            });
+            bestSpreadDiv.append(bestSpreadHTML);    
+        }
+
         for (let i = dataLen - initN; i >= dataLen - topN; i--) { //Loop through top 10
-            let highMarket = data[i][4], lowMarket = data[i][5], pairIndex, coinName = data[i][0];
-            console.log(checkedCoins[coinName]);
+            let highMarket = data[i].marketA, 
+                lowMarket = data[i].marketB, 
+                pairIndex,
+                coinName = data[i].ticker;
             if (allowedData(lowMarket, highMarket, coinName)) {
                 for (let j = data.length - 1; j >= 0; j--) {
                     if (
-                        data[j][4] === highMarket //equal ...
-                        && data[j][5] === lowMarket // to opposite market
-
-                        && data[i][0] !== data[j][0] //and isnt the same coin as pair
-                        && data[j][0] !== 'BTC' //and isnt BTC
-                        && checkedCoins[data[j][0]] //and isnt remove
-                        && checkedCoins[data[j][0]][0] !== highMarket
-                        && checkedCoins[data[j][0]][0] !== lowMarket) // and isnt disabled
+                        data[j].marketB === highMarket //equal ...
+                        && data[j].marketA === lowMarket // to opposite market
+                        && data[i].ticker !== data[j].ticker //and isnt the same coin as pair
+                        && data[j].ticker !== 'BTC' //and isnt BTC
+                        && checkedCoins[data[j].ticker] //and isnt remove
+                        && checkedCoins[data[j].ticker][0] !== highMarket
+                        && checkedCoins[data[j].ticker][0] !== lowMarket) // and isnt disabled
                     {
                         pairIndex = j;
                         break;
                     }
                 }
                 if (pairIndex > -1) {
+                    let market1price = (data[i].lastPriceA * 1000).toPrecision(3),
+                        market2price = (data[i].lastPriceB * 1000).toPrecision(3)
+   
                     let context = { //All required data
-                        coin: data[i][0],
-                        diff: ((data[i][1] - 1) * 100).toFixed(2),
-                        market2price: (data[i][2] * 1000).toPrecision(3),
+                        coin: data[i].ticker,
+                        diff: ((data[i].spread - 1) * 100).toFixed(2),
+                        market2price: market1price,
                         market2: highMarket,
-                        market1price: (data[i][3] * 1000).toPrecision(3),
+                        market1price: market2price,
                         market1: lowMarket,
                         pair: {
-                            coin: data[pairIndex][0],
-                            diff: ((data[pairIndex][1] - 1) * 100).toFixed(2),
-                            market2price: (data[pairIndex][2] * 1000).toPrecision(3),
-                            market2: data[pairIndex][4],
-                            market1price: (data[pairIndex][3] * 1000).toPrecision(3),
-                            market1: data[pairIndex][5],
+                            coin: data[pairIndex].ticker,
+                            diff: ((data[pairIndex].spread - 1) * 100).toFixed(2),
+                            market2price: market2price,
+                            market2: data[pairIndex].marketA,
+                            market1price: market1price,
+                            market1: data[pairIndex].marketB,
                         },
-                        totalDiff: (((data[i][1] - 1) * 100) + ((data[pairIndex][1] - 1) * 100)).toFixed(2)
+                        totalDiff: (((data[i].spread - 1) * 100) + ((data[pairIndex].spread - 1) * 100)).toFixed(2)
                     };
 
                     if (i === data.length - highestN) { //Add only the highest
@@ -250,7 +280,6 @@ $(window).load(function () {
                         let bestHTML = bestTemplate(context);
                         $('.best-pair').append(bestHTML);
                     }
-
 
                     let html = highTemplate(context);
                     highest.append(html);
