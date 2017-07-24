@@ -119,17 +119,3 @@ function computePrices(data) {
 // .then(v => {
 //        // console.log(v);
 //    });
-
-
-
-let pm2 = require('pm2'); //RESTART SERVER EVERY HOUR
-
-pm2.connect(function(err) {
-    if (err) throw err;
-    console.log("CONNECTED");
-    setTimeout(function worker() {
-        console.log("Restarting app...");
-        pm2.restart('main', function() {});
-        setTimeout(worker, 3600000);
-    }, 3600000);
-});
