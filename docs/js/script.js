@@ -87,7 +87,7 @@ function remove(item, highOrLow) {
     let li = $(item).closest('li');
     let coin = li.attr("data-coin");
     let market = li.attr("data-market1");
-    checkedCoins[coin] = [];
+    if (!Array.isArray(checkedCoins[coin])) checkedCoins[coin]= [];
     checkedCoins[coin].push(market);
     console.log("Removing item...", checkedCoins[coin]);
     useData();
