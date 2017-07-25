@@ -17,7 +17,7 @@
   "scripts": {
     "preinstall": "npm install pm2 -g",
     "test": "node main",
-    "start": "pm2 start main.js -i max --attach --max-memory-restart 50M"
+    "start": "pm2 start main.js --attach --max-memory-restart 50M"
   },
   "repository": {
     "type": "git",
