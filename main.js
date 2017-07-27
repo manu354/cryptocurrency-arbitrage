@@ -76,17 +76,23 @@ function computePrices(data) {
                 if(coinNames.includes(coin) == false) coinNames.push(coin);
 
 
-            let arr = [];
+            let asks = [];
+            let bids = [];
                 for (let market in data[coin]) {
-                    arr.push([data[coin][market], market]);
+                    asks.push([data[coin][market].ask, market]);
+                    bids.push([data[coin][market].bid, market]);
                 }
-                arr.sort(function (a, b) {
+                asks.sort(function (a, b) {
                     return a[0] - b[0];
                 });
-                for (let i = 0; i < arr.length; i++) {
-                    for (let j = i + 1; j < arr.length; j++) {
-                        results.push([coin, arr[i][0] / arr[j][0], arr[i][0], arr[j][0], arr[i][1], arr[j][1] ], [coin, arr[j][0] / arr[i][0], arr[j][0], arr[i][0], arr[j][1], arr[i][1]]);
+                bids.sort(function(a,b){
+                    return b[0] - a[0];
+                });
+                for (let i = 0; i < asks.length; i++) {
+                    for (let j = i; j < asks.length; j++) {
+                        results.push([coin,bids[i][0]/asks[j][0],bids[i][0],asks[j][0],bids[i][1],asks[j][1] ]);
                     }
+                    
                 }
 
             }
