@@ -254,15 +254,15 @@
         Remove this opportunity </a>
     </li>
     <li class="coin-info-low" data-coin="{{pair.coin}}" data-market1="{{pair.market1}}" data-market2="{{pair-market2}}">
-        <h1>sell for <strong>{{pair.coin}}</strong> and transfer back to <strong> {{pair.market2}}
-            ({{pair.diff}}%)</strong>
+        <h1>sell for <strong>{{pair.coin}}</strong> and transfer back to <strong><a href="{{coinlink1}}"> {{pair.market1}}
+            ({{pair.diff}}%)</a></strong>
         </h1>
         <div class="coin">
             <i class="cc-{{pair.coin}} {{pair.coin}} cc"> </i>
             <p class="coin-name">{{pair.coin}}</p>
             <p class="coin-prices">{{pair.diff}}%</p>
-            <p class="coin-markets"><a>{{pair.market1}}</a>: {{pair.market1price}}<span class="mBTC">mBTC</span> <i
-                    class="fa fa-long-arrow-right"></i> <a>{{pair.market2}}</a>: {{pair.market2price}}<span
+            <p class="coin-markets"><a>{{pair.market1}}</a>: {{pair.market2price}}<span class="mBTC">mBTC</span> <i
+                    class="fa fa-long-arrow-right"></i> <a>{{pair.market2}}</a>: {{pair.market1price}}<span
                     class="mBTC">mBTC</span>
             </p>
         </div>
