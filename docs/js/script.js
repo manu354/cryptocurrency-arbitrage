@@ -237,12 +237,14 @@ $(window).load(function () {
                         pair: {
                             coin: data[pairIndex][0],
                             diff: ((data[pairIndex][1] - 1) * 100).toFixed(2),
-                            market2price: (data[pairIndex][2] * 1000).toPrecision(3),
-                            market2: data[pairIndex][5],
-                            market1price: (data[pairIndex][3] * 1000).toPrecision(3),
-                            market1: data[pairIndex][4],
+                            market1price: (data[pairIndex][2] * 1000).toPrecision(3),
+                            market2: data[pairIndex][4],
+                            market2price: (data[pairIndex][3] * 1000).toPrecision(3),
+                            market1: data[pairIndex][5],
                         },
-                        totalDiff: (((data[i][1] - 1) * 100) + ((data[pairIndex][1] - 1) * 100)).toFixed(2)
+                        totalDiff: (((data[i][1] - 1) * 100) + ((data[pairIndex][1] - 1) * 100)).toFixed(2),
+                        coinlink1: coinLinkBuilder(data[i][0],lowMarket),
+                        coinlink2: coinLinkBuilder(data[i][0],highMarket)
                     };
 
                     if (i === data.length - highestN) { //Add only the highest
@@ -289,6 +291,21 @@ $(window).load(function () {
 
     });
 
+    function coinLinkBuilder(coin, market){
+        var marketBaseLinks = {
+            poloniex: 'https://poloniex.com/exchange#btc_',
+            bittrex: 'https://bittrex.com/Market/Index?MarketName=BTC-',
+            btc38: 'http://www.btc38.com/trade_en.html?btc38_trade_coin_name=',
+            jubi: 'https://www.jubi.com/coin/',
+            cryptopia: 'https://www.cryptopia.co.nz/Exchange/?market=',
+            bleutrade: 'https://bleutrade.com/exchange/',
+            kraken: 'https://www.kraken.com/u/trade'
+        }
+        if(market.includes('cryptopia')) return marketBaseLinks[market]+coin+'_BTC';
+        else if(market.includes('bleutrade')) return marketBaseLinks[market]+coin+'/BTC';
+        else if(market.includes('kraken')) return marketBaseLinks[market];
+        else return marketBaseLinks[market]+coin;
+    }
 });
 
 
