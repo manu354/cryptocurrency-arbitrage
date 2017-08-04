@@ -57,8 +57,7 @@ function addRemoveCoin(coin) {
     if (checkedCoins[coin]) {
         $('#check-' + coin).addClass('fa-check-square-o');
         $('#check-' + coin).removeClass('fa-square-o');
-    }
-    else {
+    } else {
         $('#check-' + coin).removeClass('fa-check-square-o');
         $('#check-' + coin).addClass('fa-square-o');
     }
@@ -68,14 +67,14 @@ function addRemoveCoin(coin) {
 
 function addRemoveMarket(market) {
     console.log("Trying to add/remove market")
-    if (addOne){ console.log("If add one"); checkedMarkets[market] = !checkedMarkets[market] };
+    if (addOne) { console.log("If add one");
+        checkedMarkets[market] = !checkedMarkets[market] };
 
     if (checkedMarkets[market]) {
         console.log("If add one");
         $('#check-' + market).addClass('fa-check-square-o');
         $('#check-' + market).removeClass('fa-square-o');
-    }
-    else {
+    } else {
         $('#check-' + market).removeClass('fa-check-square-o');
         $('#check-' + market).addClass('fa-square-o')
     }
@@ -87,7 +86,7 @@ function remove(item, highOrLow) {
     let li = $(item).closest('li');
     let coin = li.attr("data-coin");
     let market = li.attr("data-market1");
-    if (!Array.isArray(checkedCoins[coin])) checkedCoins[coin]= [];
+    if (!Array.isArray(checkedCoins[coin])) checkedCoins[coin] = [];
     checkedCoins[coin].push(market);
     console.log("Removing item...", checkedCoins[coin]);
     useData();
@@ -100,9 +99,9 @@ function searchMarketsOrCoins(marketOrCoin, input) {
     if (input === "") {
         listItems.show();
     } else {
-        listItems.each(function () {
+        listItems.each(function() {
             let text = $(this).text().toUpperCase();
-            (text.indexOf(input) >= 0) ? $(this).show() : $(this).hide();
+            (text.indexOf(input) >= 0) ? $(this).show(): $(this).hide();
         });
     }
 
@@ -111,22 +110,23 @@ function searchMarketsOrCoins(marketOrCoin, input) {
 
 let useData;
 
-$(window).load(function () {
+$(window).load(function() {
     new WOW().init();
 
     $('.loader').hide();
     $('#header').show();
 
 
-    let socket = io('https://ccarbitrage.azurewebsites.net/');
+    let socket = io('http://localhost:3000/');
 
     let numberOfLoads = 0; //Number of final results loads
     let numberOfMLoads = 0; //Number of Market loadss
 
 
-    socket.on('coinsAndMarkets', function (data) { //Function for when we get market data
-        if (numberOfMLoads === 0) {  //Only  need to run this function once (Currently)
-            let list = $('#market-list').empty(), coinList = $('#coin-list').empty();
+    socket.on('coinsAndMarkets', function(data) { //Function for when we get market data
+        if (numberOfMLoads === 0) { //Only  need to run this function once (Currently)
+            let list = $('#market-list').empty(),
+                coinList = $('#coin-list').empty();
 
             let marketSource = $("#market-list-template").html(); //Source
             let marketTemplate = Handlebars.compile(marketSource); // ^ and template for coin and market lists
@@ -136,7 +136,7 @@ $(window).load(function () {
 
             let coinDataLen = data[1].length;
             for (let i = 0; i < coinDataLen; i++) { //Loop through coins
-                let context = {coin: data[1][i]};
+                let context = { coin: data[1][i] };
                 let coin = context.coin;
                 if (data[0][i]) {
                     context.market = data[0][i][0];
@@ -169,58 +169,63 @@ $(window).load(function () {
 
     var data;
 
-    $('#coin-search').keyup(function () {
+    $('#coin-search').keyup(function() {
         let value = $(this).val();
         console.log(value);
         searchMarketsOrCoins("coin", value)
     });
-    $('#market-search').keyup(function () {
+    $('#market-search').keyup(function() {
         let value = $(this).val();
         searchMarketsOrCoins("market", value)
     });
 
-    $('.loadNumberInput').change(function () {
+    $('.loadNumberInput').change(function() {
         useData();
     });
-    function allowedData(lowMarket, highMarket, coinName) {
-        if(checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName]){
-            if(Array.isArray(checkedCoins[coinName])) {
-                if(!checkedCoins[coinName].includes(lowMarket) && !checkedCoins[coinName].includes(highMarket)) {
-                    return true;
-                }
-                else return false;
 
-            }
-            else{
+    function allowedData(lowMarket, highMarket, coinName) {
+        if (checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName]) {
+            if (Array.isArray(checkedCoins[coinName])) {
+                if (!checkedCoins[coinName].includes(lowMarket) && !checkedCoins[coinName].includes(highMarket)) {
+                    return true;
+                } else return false;
+
+            } else {
                 return true;
             }
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    useData = function () {
+    useData = function() {
         let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
         let highestN = 1;
         let initN = 1;
         let dataLen = data.length;
-        highest.empty();  //Remove any previous data (LI) from UL
+        highest.empty(); //Remove any previous data (LI) from UL
         for (let i = dataLen - initN; i >= dataLen - topN; i--) { //Loop through top 10
-            let highMarket = data[i][4], lowMarket = data[i][5], pairIndex, coinName = data[i][0];
+            let highMarket = data[i][4],
+                lowMarket = data[i][5],
+                pairIndex, coinName = data[i][0];
             console.log(checkedCoins[coinName]);
             if (allowedData(lowMarket, highMarket, coinName)) {
                 for (let j = data.length - 1; j >= 0; j--) {
                     if (
                         data[j][4] === highMarket //equal ...
-                        && data[j][5] === lowMarket // to opposite market
+                        &&
+                        data[j][5] === lowMarket // to opposite market
 
-                        && data[i][0] !== data[j][0] //and isnt the same coin as pair
-                        && data[j][0] !== 'BTC' //and isnt BTC
-                        && checkedCoins[data[j][0]] //and isnt remove
-                        && checkedCoins[data[j][0]][0] !== highMarket
-                        && checkedCoins[data[j][0]][0] !== lowMarket) // and isnt disabled
+                        &&
+                        data[i][0] !== data[j][0] //and isnt the same coin as pair
+                        &&
+                        data[j][0] !== 'BTC' //and isnt BTC
+                        &&
+                        checkedCoins[data[j][0]] //and isnt remove
+                        &&
+                        checkedCoins[data[j][0]][0] !== highMarket &&
+                        checkedCoins[data[j][0]][0] !== lowMarket) // and isnt disabled
                     {
                         pairIndex = j;
                         break;
@@ -254,14 +259,11 @@ $(window).load(function () {
 
                     let html = highTemplate(context);
                     highest.append(html);
-                }
-                else if (data.length - topN > 0) {
+                } else if (data.length - topN > 0) {
                     topN++;
                     highestN++;
                 }
-            }
-
-            else if (data.length - topN > 0) {
+            } else if (data.length - topN > 0) {
                 topN++;
                 highestN++;
             }
@@ -270,7 +272,7 @@ $(window).load(function () {
 
     let waitForMoreData;
 
-    socket.on('results', function (results) {
+    socket.on('results', function(results) {
         clearTimeout(waitForMoreData); //Every time we recieive new data clear the previous timeout so we don't loop through the data too many times unnecessarily...
         numberOfLoads++;
         if (numberOfLoads === 1) { //...unless we haven't loaded the data yet, then just run useData() immediately.
@@ -278,10 +280,8 @@ $(window).load(function () {
             $('#highest, #lowest').show(); //Show The UL
             data = results;
             useData();
-        }
-
-        else {
-            waitForMoreData = setTimeout(function () {
+        } else {
+            waitForMoreData = setTimeout(function() {
                 data = results;
                 useData();
             }, 1000); //Wait a second before we run the function in case we get newer data within less than a second
@@ -290,7 +290,3 @@ $(window).load(function () {
     });
 
 });
-
-
-
-
