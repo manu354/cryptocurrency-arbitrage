@@ -203,7 +203,6 @@ $(window).load(function () {
     }
 
     useData = function () {
-
         console.log(data);
         let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
@@ -212,19 +211,18 @@ $(window).load(function () {
         let dataLen = data.length;
         highest.empty();  //Remove any previous data (LI) from UL
         for (let i = dataLen - initN; i >= dataLen - topN; i--) { //Loop through top 10
-            let highMarket = data[i].market1.name, lowMarket = data[i].market2.name, pairIndex, coinName = data[i].coin;
+            let market1 = data[i].market1.name, market2 = data[i].market2.name, pairIndex, coinName = data[i].coin;
             // console.log(checkedCoins[coinName]);
-            if (allowedData(lowMarket, highMarket, coinName)) {
+            if (allowedData(market2, market1, coinName)) {
                 for (let j = data.length - 1; j >= 0; j--) {
                     if (
-                        data[j].market1.name === highMarket //equal ...
-                        && data[j].market2.name === lowMarket // to opposite market
-
+                        data[j].market1.name === market1 //equal ...
+                        && data[j].market2.name === market2 // to opposite market
                         && data[i].coin !== data[j].coin //and isnt the same coin as pair
                         && data[j].coin !== 'BTC' //and isnt BTC
                         && checkedCoins[data[j].coin] //and isnt remove
-                        && checkedCoins[data[j].coin][0] !== highMarket
-                        && checkedCoins[data[j].coin][0] !== lowMarket) // and isnt disabled
+                        && checkedCoins[data[j].coin][0] !== market1
+                        && checkedCoins[data[j].coin][0] !== market2) // and isnt disabled
                     {
                         pairIndex = j;
                         break;
@@ -235,9 +233,9 @@ $(window).load(function () {
                         coin: data[i].coin,
                         diff: ((data[i].spread - 1) * 100).toFixed(3),
                         market2price: (data[i].market2.last * 1000).toPrecision(3),
-                        market2: highMarket,
+                        market2: market2,
                         market1price: (data[i].market1.last * 1000).toPrecision(3),
-                        market1: lowMarket,
+                        market1: market1,
                         pair: {
                             coin: data[pairIndex].coin,
                             diff: ((data[pairIndex].spread - 1) * 100).toFixed(3),
