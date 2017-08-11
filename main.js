@@ -28,7 +28,7 @@ http.listen(port, function () {
 
 
 require('./settings.js')(); //Includes settings file.
-let db = require('./db.js'); //Includes db.js
+// let db = require('./db.js'); //Includes db.js
 
 
 let coinNames = [];
