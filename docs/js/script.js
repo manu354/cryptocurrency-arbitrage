@@ -4,7 +4,9 @@ function history(coin1, coin2) {
     alert('History graphs coming soon', coin1, coin2);
 }
 
-// alert("Under mantainence, come back in an hour.");
+
+
+alert("Hosting has run out, to run please see github on how to run locally. Or donate so I can keep it hosted!");
 
 var checkedMarkets = {
         showAll: true,
@@ -118,7 +120,7 @@ $(window).load(function () {
     $('#header').show();
 
 
-    let socket = io('https://ccarbitrage.azurewebsites.net/');
+    let socket = io();
 
     let numberOfLoads = 0; //Number of final results loads
     let numberOfMLoads = 0; //Number of Market loadss
@@ -201,6 +203,8 @@ $(window).load(function () {
     }
 
     useData = function () {
+
+        console.log(data);
         let topN = $('.loadNumberInput').val();
         if (!topN) topN = 5;
         let highestN = 1;
@@ -208,41 +212,41 @@ $(window).load(function () {
         let dataLen = data.length;
         highest.empty();  //Remove any previous data (LI) from UL
         for (let i = dataLen - initN; i >= dataLen - topN; i--) { //Loop through top 10
-            let highMarket = data[i][4], lowMarket = data[i][5], pairIndex, coinName = data[i][0];
-            console.log(checkedCoins[coinName]);
+            let highMarket = data[i].market1.name, lowMarket = data[i].market2.name, pairIndex, coinName = data[i].coin;
+            // console.log(checkedCoins[coinName]);
             if (allowedData(lowMarket, highMarket, coinName)) {
                 for (let j = data.length - 1; j >= 0; j--) {
                     if (
-                        data[j][4] === highMarket //equal ...
-                        && data[j][5] === lowMarket // to opposite market
+                        data[j].market1.name === highMarket //equal ...
+                        && data[j].market2.name === lowMarket // to opposite market
 
-                        && data[i][0] !== data[j][0] //and isnt the same coin as pair
-                        && data[j][0] !== 'BTC' //and isnt BTC
-                        && checkedCoins[data[j][0]] //and isnt remove
-                        && checkedCoins[data[j][0]][0] !== highMarket
-                        && checkedCoins[data[j][0]][0] !== lowMarket) // and isnt disabled
+                        && data[i].coin !== data[j].coin //and isnt the same coin as pair
+                        && data[j].coin !== 'BTC' //and isnt BTC
+                        && checkedCoins[data[j].coin] //and isnt remove
+                        && checkedCoins[data[j].coin][0] !== highMarket
+                        && checkedCoins[data[j].coin][0] !== lowMarket) // and isnt disabled
                     {
                         pairIndex = j;
                         break;
                     }
                 }
-                if (pairIndex > -1) {
+                if (pairIndex > -1) { //TODO LOL DOLODLOD ODODODO FIX pairs, not showing uo correctly
                     let context = { //All required data
-                        coin: data[i][0],
-                        diff: ((data[i][1] - 1) * 100).toFixed(2),
-                        market2price: (data[i][2] * 1000).toPrecision(3),
+                        coin: data[i].coin,
+                        diff: ((data[i].spread - 1) * 100).toFixed(3),
+                        market2price: (data[i].market2.last * 1000).toPrecision(3),
                         market2: highMarket,
-                        market1price: (data[i][3] * 1000).toPrecision(3),
+                        market1price: (data[i].market1.last * 1000).toPrecision(3),
                         market1: lowMarket,
                         pair: {
-                            coin: data[pairIndex][0],
-                            diff: ((data[pairIndex][1] - 1) * 100).toFixed(2),
-                            market2price: (data[pairIndex][2] * 1000).toPrecision(3),
-                            market2: data[pairIndex][5],
-                            market1price: (data[pairIndex][3] * 1000).toPrecision(3),
-                            market1: data[pairIndex][4],
+                            coin: data[pairIndex].coin,
+                            diff: ((data[pairIndex].spread - 1) * 100).toFixed(3),
+                            market2price: (data[pairIndex].market2.last * 1000).toPrecision(3),
+                            market2: data[pairIndex].market2.name,
+                            market1price: (data[pairIndex].market1.last * 1000).toPrecision(3),
+                            market1: data[pairIndex].market1.name,
                         },
-                        totalDiff: (((data[i][1] - 1) * 100) + ((data[pairIndex][1] - 1) * 100)).toFixed(2)
+                        totalDiff: (((data[i].spread - 1) * 100) + ((data[pairIndex].spread - 1) * 100)).toFixed(2)
                     };
 
                     if (i === data.length - highestN) { //Add only the highest
@@ -254,6 +258,7 @@ $(window).load(function () {
 
                     let html = highTemplate(context);
                     highest.append(html);
+                    console.log("Appending...")
                 }
                 else if (data.length - topN > 0) {
                     topN++;
@@ -266,7 +271,7 @@ $(window).load(function () {
                 highestN++;
             }
         }
-    }
+    };
 
     let waitForMoreData;
 
