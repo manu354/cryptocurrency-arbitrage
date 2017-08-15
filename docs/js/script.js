@@ -216,8 +216,8 @@ $(window).load(function () {
             if (allowedData(market2, market1, coinName)) {
                 for (let j = data.length - 1; j >= 0; j--) {
                     if (
-                        data[j].market1.name === market1 //equal ...
-                        && data[j].market2.name === market2 // to opposite market
+                        data[j].market1.name === market2 //equal ...
+                        && data[j].market2.name === market1 // to opposite market
                         && data[i].coin !== data[j].coin //and isnt the same coin as pair
                         && data[j].coin !== 'BTC' //and isnt BTC
                         && checkedCoins[data[j].coin] //and isnt remove
@@ -228,7 +228,7 @@ $(window).load(function () {
                         break;
                     }
                 }
-                if (pairIndex > -1) { //TODO LOL DOLODLOD ODODODO FIX pairs, not showing uo correctly
+                if (pairIndex > -1) { //TODO  FIX pairs, not showing uo correctly
                     let context = { //All required data
                         coin: data[i].coin,
                         diff: ((data[i].spread - 1) * 100).toFixed(3),

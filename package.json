@@ -17,9 +17,8 @@
     "socket.io": "^2.0.3"
   },
   "scripts": {
-    "preinstall": "npm install pm2 -g",
     "test": "node main",
-    "start": "pm2 start main.js --attach --max-memory-restart 400M"
+    "start": "node main"
   },
   "repository": {
     "type": "git",

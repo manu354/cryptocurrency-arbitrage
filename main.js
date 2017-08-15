@@ -21,7 +21,6 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/docs'));
 
-
 http.listen(port, function () {
     console.log('listening on', port);
 });
@@ -41,7 +40,7 @@ io.on('connection', function (socket) {
 // results is a 2D array with coin name and percentage difference, sorted from low to high.
 let coin_prices = {}, numberOfRequests = 0, results = []; // GLOBAL variables to get pushed to browser.
 
-function getMarketData(options, coin_prices, callback) { //GET JSON DATA
+function getMarketData(options, coin_prices, callback) {   //GET JSON DATA
     return new Promise(function (resolve, reject) {
         request(options.URL, function (error, response, body) {
             try {
@@ -118,7 +117,21 @@ async function computePrices(data) {
                                         }
 
                                     }
-                                )
+                                );
+
+                                // db.insert({
+                                //     coin: coin,
+                                //     lastSpread: arr[i][0] / arr[j][0],
+                                //     market1: {
+                                //         name: arr[i][1],
+                                //         last: arr[i][0]
+                                //     },
+                                //     market2: {
+                                //         name: arr[j][1],
+                                //         last: arr[j][0]
+                                //     }
+                                // })
+
                             }
                         }
 
@@ -153,7 +166,3 @@ async function computePrices(data) {
 
     setTimeout(main, 10000);
 })();
-
-// .then(v => {
-//        // console.log(v);
-//    });
