@@ -8,7 +8,7 @@ function history(coin1, coin2) {
 
 alert("Thanks to a donator we can have this site hosted for 20 months. <3");
 
-var checkedMarkets = {
+let checkedMarkets = {
         showAll: true,
         bittrex: true,
         poloniex: true
@@ -16,8 +16,8 @@ var checkedMarkets = {
     },
     checkedCoins = {
         showAll: false,
-        TIC: false,
-        PLC: false
+        // TIC: false,
+        // PLC: false
     };
 
 let addOne = true;
