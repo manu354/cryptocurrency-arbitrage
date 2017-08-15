@@ -6,7 +6,7 @@ function history(coin1, coin2) {
 
 
 
-alert("Hosting has run out, to run please see github on how to run locally. Or donate so I can keep it hosted!");
+alert("Thanks to a donator we can have this site hosted for 20 months. <3");
 
 var checkedMarkets = {
         showAll: true,
