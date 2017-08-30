@@ -10,14 +10,15 @@
     "bluebird": "^3.5.0",
     "express": "^4.15.3",
     "helmet": "^3.6.1",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.5",
     "pm2": "^2.6.1",
     "request": "^2.81.0",
     "socket.io": "^2.0.3"
   },
   "scripts": {
-    "preinstall": "npm install pm2 -g",
     "test": "node main",
-    "start": "pm2 start main.js --attach --max-memory-restart 50M"
+    "start": "node main"
   },
   "repository": {
     "type": "git",

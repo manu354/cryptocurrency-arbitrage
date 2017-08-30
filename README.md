@@ -100,3 +100,8 @@ Feel free to suggest edits / pull requests or email me at manummasson8@gmail.com
 ## License
 
 See the [LICENSE.md](LICENSE.md) file for details
+
+## Donating
+
+BTC: 1DpMyyPoBSVNZqhM6d4k1TdYun1XpXaeMo
+LTC: LVXCvcV52unCdcqvyvKp6mC6AAVur1EZ57
