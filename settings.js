@@ -64,7 +64,7 @@ let markets = [
     // },
     {
         marketName: 'bittrex',
-        URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
+        URLs: ['https://bittrex.com/api/v1.1/public/getmarketsummaries'],
         toBTCURL: false,
         pairURL : '',
         last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
@@ -91,7 +91,7 @@ let markets = [
 
     {
         marketName: 'btc38',
-        URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
+        URLs: ['http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny'],
         toBTCURL: false,
         pairURL : '',
         last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
@@ -118,7 +118,7 @@ let markets = [
 
     {
         marketName: 'jubi',
-        URL: 'https://www.jubi.com/api/v1/allticker/', //URL To Fetch API From.
+        URLs: ['https://www.jubi.com/api/v1/allticker/'], //URL To Fetch API From.
         toBTCURL: false, //URL, if needed for an external bitcoin price api.
         pairURL : '',
         last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
@@ -148,7 +148,7 @@ let markets = [
 
     {
         marketName: 'poloniex',
-        URL: 'https://poloniex.com/public?command=returnTicker',
+        URLs: ['https://poloniex.com/public?command=returnTicker'],
         toBTCURL: false,
         pairURL : '',
         last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
@@ -175,7 +175,7 @@ let markets = [
     
     {
 		marketName: 'cryptopia',
-		URL: 'https://www.cryptopia.co.nz/api/GetMarkets/BTC', //URL To Fetch API From.
+		URLs: ['https://www.cryptopia.co.nz/api/GetMarkets/BTC'], //URL To Fetch API From.
 		toBTCURL: false, //URL, if needed for an external bitcoin price api.
         pairURL : '',
         last: function (data, coin_prices) { //Get the last price of coins in JSON data
@@ -199,10 +199,44 @@ let markets = [
             })
 		},
 	},
+
+    {
+        marketName: 'gdax',
+        URLs: [
+            'https://api.gdax.com/products/ETH-BTC/trades',
+            'https://api.gdax.com/products/LTC-BTC/trades'
+        ],
+        toBTCURL: false,
+        pairURL : '',
+        last: function (data, coin_prices, url) { //Where to find the last price of coin in JSON data
+            return new Promise(function (res, rej) {
+                try {
+
+                    if (url.includes('ETH')) {
+                        var coinName = 'ETH'
+                    } else {
+                        var coinName = 'LTC'
+                    }
+
+
+                    if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                    coin_prices[coinName].gdax = data[0]['price'];
+
+                    res(coin_prices);
+                }
+                catch (err) {
+                    console.log(err);
+                    rej(err);
+                }
+
+            })
+        }
+
+    },
     
     {
 		marketName: 'bleutrade',
-		URL: 'https://bleutrade.com/api/v2/public/getmarketsummaries', //URL To Fetch API From.
+		URLs: ['https://bleutrade.com/api/v2/public/getmarketsummaries'], //URL To Fetch API From.
 		toBTCURL: false, //URL, if needed for an external bitcoin price api.
         pairURL : '',
         last: function (data, coin_prices) { //Get the last price of coins in JSON data
@@ -230,7 +264,7 @@ let markets = [
 	{
 
         marketName: 'kraken', // kraken has no one size fits all market summery so each pair has to be entered as param in GET - will need to add new coins as they are added to exchange
-        URL: 'https://api.kraken.com/0/public/Ticker?pair=DASHXBT,EOSXBT,GNOXBT,ETCXBT,ETHXBT,ICNXBT,LTCXBT,MLNXBT,REPXBT,XDGXBT,XLMXBT,XMRXBT,XRPXBT,ZECXBT', //URL To Fetch API From.
+        URLs: ['https://api.kraken.com/0/public/Ticker?pair=DASHXBT,EOSXBT,GNOXBT,ETCXBT,ETHXBT,ICNXBT,LTCXBT,MLNXBT,REPXBT,XDGXBT,XLMXBT,XMRXBT,XRPXBT,ZECXBT'], //URL To Fetch API From.
         toBTCURL: false, //URL, if needed for an external bitcoin price api.
         pairURL : '',
         last: function (data, coin_prices) { //Get the last price of coins in JSON data

@@ -40,15 +40,22 @@ io.on('connection', function (socket) {
 // results is a 2D array with coin name and percentage difference, sorted from low to high.
 let coin_prices = {}, numberOfRequests = 0, results = []; // GLOBAL variables to get pushed to browser.
 
-function getMarketData(options, coin_prices, callback) {   //GET JSON DATA
+let user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36'
+let global_options = {
+    'headers': {
+        'User-Agent': user_agent
+    }
+};
+
+function getMarketData(options, coin_prices, url_index, callback) {   //GET JSON DATA
     return new Promise(function (resolve, reject) {
-        request(options.URL, function (error, response, body) {
+        request(options.URLs[url_index], global_options, function (error, response, body) {
             try {
                 let data = JSON.parse(body);
                 console.log("Success", options.marketName);
                 if (options.marketName) {
 
-                    let newCoinPrices = options.last(data, coin_prices, options.toBTCURL);
+                    let newCoinPrices = options.last(data, coin_prices, options.URLs[url_index]);
                     numberOfRequests++;
                     if (numberOfRequests >= 1) computePrices(coin_prices);
                     resolve(newCoinPrices);
@@ -77,7 +84,12 @@ async function computePrices(data) {
 
             if (numberOfRequests >= 2) {
 
+
+                console.log("price data: ", data);
+
                 for (let coin in data) {
+
+
 
                     if (Object.keys(data[coin]).length > 1) {
                         if (coinNames.includes(coin) == false) coinNames.push(coin);
@@ -158,7 +170,13 @@ async function computePrices(data) {
     let arrayOfRequests = [];
 
     for (let i = 0; i < markets.length; i++) {
-        arrayOfRequests.push(getMarketData(markets[i], coin_prices));
+
+        let market_info = markets[i];
+
+        for (let url_index = 0; url_index < market_info['URLs'].length; url_index++) {
+            arrayOfRequests.push(getMarketData(market_info, coin_prices, url_index));
+        }
+
     }
 
     await Promise.all(arrayOfRequests.map(p => p.catch(e => e)))
