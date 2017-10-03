@@ -6,7 +6,7 @@ function history(coin1, coin2) {
 
 
 
-alert("Thanks to a donator we can have this site hosted for 20 months. <3. Although as of right now it still needs to be run locally.");
+alert("Needs to be run locally.");
 
 let checkedMarkets = {
         showAll: true,
