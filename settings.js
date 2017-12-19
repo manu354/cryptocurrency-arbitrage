@@ -114,6 +114,7 @@ let markets = [
             })
         }
     },
+    /*
     {
         marketName: 'btc38',
         URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
@@ -140,7 +141,7 @@ let markets = [
             })
         }
     },
-
+    */
     {
         marketName: 'jubi',
         URL: 'https://www.jubi.com/api/v1/allticker/', //URL To Fetch API From.
