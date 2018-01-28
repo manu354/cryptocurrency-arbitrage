@@ -89,61 +89,115 @@ let markets = [
 
     },
 
+    // {
+    //     marketName: 'btc38',
+    //     URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
+    //     toBTCURL: false,
+    //     pairURL : '',
+    //     last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
+    //         return new Promise(function (res, rej) {
+    //             let priceOfBTC = data.btc.ticker.last;
+    //             try {
+    //                 for (let key in data) {
+    //                     let coinName = key.toUpperCase();
+    //                     let price = data[key]['ticker'].last;
+    //                     if (!coin_prices[coinName]) coin_prices[coinName] = {};
+
+    //                     coin_prices[coinName]["btc38"] = data[key]['ticker'].last / priceOfBTC;
+    //                 }
+    //                 res(coin_prices);
+    //             }
+
+    //             catch (err) {
+    //                 console.log(err);
+    //                 rej(err)
+    //             }
+    //         })
+    //     }
+    // },
+
     {
-        marketName: 'btc38',
-        URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
+        marketName: 'bx',
+        URL: 'https://bx.in.th/api/',
         toBTCURL: false,
         pairURL : '',
-        last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
+        last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
-                let priceOfBTC = data.btc.ticker.last;
                 try {
-                    for (let key in data) {
-                        let coinName = key.toUpperCase();
-                        let price = data[key]['ticker'].last;
-                        if (!coin_prices[coinName]) coin_prices[coinName] = {};
-
-                        coin_prices[coinName]["btc38"] = data[key]['ticker'].last / priceOfBTC;
+                    for (var obj in data) {
+                    	// console.log(data[obj].primary_currency);
+                        if(data[obj].primary_currency.includes('BTC')) {
+                            let coinName = data[obj].secondary_currency;
+                            if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                            coin_prices[coinName].bx = data[obj].last_price;
+                        }
                     }
                     res(coin_prices);
                 }
-
                 catch (err) {
                     console.log(err);
-                    rej(err)
+                    rej(err);
                 }
+
             })
-        }
+        },
+
     },
 
     {
-        marketName: 'jubi',
-        URL: 'https://www.jubi.com/api/v1/allticker/', //URL To Fetch API From.
-        toBTCURL: false, //URL, if needed for an external bitcoin price api.
+        marketName: 'binance',
+        URL: 'https://api.binance.com/api/v3/ticker/price',
+        toBTCURL: false,
         pairURL : '',
-        last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
+        last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
-                let priceOfBTC = data.btc.last;
-                console.log(priceOfBTC);
                 try {
-                    for (let key in data) {
-                        let coinName = key.toUpperCase();
-                        let price = data[key].last;
-                        if (!coin_prices[coinName]) coin_prices[coinName] = {};
-
-                        coin_prices[coinName]["jubi"] = data[key].last / priceOfBTC;
+                    for (let obj of data) {
+                        if(obj["symbol"].includes('BTC')) {
+                            let coinName = obj["symbol"].replace("BTC", '');
+                            if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                            coin_prices[coinName].binance = obj["price"];
+                        }
                     }
                     res(coin_prices);
                 }
-
                 catch (err) {
                     console.log(err);
-                    rej(err)
+                    rej(err);
                 }
+
             })
-        }
+        },
 
     },
+
+    // {
+    //     marketName: 'jubi',
+    //     URL: 'https://www.jubi.com/api/v1/allticker/', //URL To Fetch API From.
+    //     toBTCURL: false, //URL, if needed for an external bitcoin price api.
+    //     pairURL : '',
+    //     last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
+    //         return new Promise(function (res, rej) {
+    //             let priceOfBTC = data.btc.last;
+    //             console.log(priceOfBTC);
+    //             try {
+    //                 for (let key in data) {
+    //                     let coinName = key.toUpperCase();
+    //                     let price = data[key].last;
+    //                     if (!coin_prices[coinName]) coin_prices[coinName] = {};
+
+    //                     coin_prices[coinName]["jubi"] = data[key].last / priceOfBTC;
+    //                 }
+    //                 res(coin_prices);
+    //             }
+
+    //             catch (err) {
+    //                 console.log(err);
+    //                 rej(err)
+    //             }
+    //         })
+    //     }
+    // },
 
 
     {
