@@ -54,6 +54,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 Required: Node.js **^ V8.0.0** this program uses ES7 features such as async/await and requires a newer version of node.
 
+### Run with Docker
+Simply run `docker run -d -p 3000:3000 olsynt/cryptocurrencyarbitrage`
+Open your browser localhost:3000
+
 ### Installing
 
 In a terminal write the following:
