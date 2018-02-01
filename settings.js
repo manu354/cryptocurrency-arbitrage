@@ -88,7 +88,33 @@ let markets = [
         },
 
     },
+    {
+        marketName: 'binance',
+        URL: 'https://api.binance.com/api/v3/ticker/price',
+        toBTCURL: false,
+        pairURL: '',
+        last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
+            return new Promise(function (res, rej) {
+                try {
+                    console.log(data);
+                    for (let obj of data) {
+                        if (obj["symbol"].includes('BTC')) {
+                            let coinName = obj["symbol"].replace("BTC", '');
+                            if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                            coin_prices[coinName].binance = obj.price;
+                        }
+                    }
+                    res(coin_prices);
+                }
+                catch (err) {
+                    console.log(err);
+                    rej(err);
+                }
 
+            })
+        }
+    },
+    /*
     {
         marketName: 'btc38',
         URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
@@ -115,7 +141,7 @@ let markets = [
             })
         }
     },
-
+    */
     {
         marketName: 'jubi',
         URL: 'https://www.jubi.com/api/v1/allticker/', //URL To Fetch API From.
