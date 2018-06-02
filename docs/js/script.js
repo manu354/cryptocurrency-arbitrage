@@ -292,6 +292,21 @@ $(window).load(function () {
 
     });
 
+    function coinLinkBuilder(coin, market){
+        var marketBaseLinks = {
+            poloniex: 'https://poloniex.com/exchange#btc_',
+            bittrex: 'https://bittrex.com/Market/Index?MarketName=BTC-',
+            btc38: 'http://www.btc38.com/trade_en.html?btc38_trade_coin_name=',
+            jubi: 'https://www.jubi.com/coin/',
+            cryptopia: 'https://www.cryptopia.co.nz/Exchange/?market=',
+            bleutrade: 'https://bleutrade.com/exchange/',
+            kraken: 'https://www.kraken.com/u/trade'
+        }
+        if(market.includes('cryptopia')) return marketBaseLinks[market]+coin+'_BTC';
+        else if(market.includes('bleutrade')) return marketBaseLinks[market]+coin+'/BTC';
+        else if(market.includes('kraken')) return marketBaseLinks[market];
+        else return marketBaseLinks[market]+coin;
+    }
 });
 
 

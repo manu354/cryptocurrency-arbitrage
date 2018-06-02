@@ -135,7 +135,23 @@ async function computePrices(data) {
                             }
                         }
 
+            let asks = [];
+            let bids = [];
+                for (let market in data[coin]) {
+                    asks.push([data[coin][market].ask, market]);
+                    bids.push([data[coin][market].bid, market]);
+                }
+                asks.sort(function (a, b) {
+                    return a[0] - b[0];
+                });
+                bids.sort(function(a,b){
+                    return b[0] - a[0];
+                });
+                for (let i = 0; i < asks.length; i++) {
+                    for (let j = i; j < asks.length; j++) {
+                        results.push([coin,bids[i][0]/asks[j][0],bids[i][0],asks[j][0],bids[i][1],asks[j][1] ]);
                     }
+                    
                 }
                 results.sort(function (a, b) {
                     return a.spread - b.spread;
