@@ -64,15 +64,15 @@ let markets = [
     // },
     {
         marketName: 'bittrex',
-        URL: 'https://bittrex.com/api/v3/markets/summaries',
+        URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
         toBTCURL: false,
         pairURL : '',
         last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 try {
                     for (let obj of data.result) {
-                        if(obj["symbol"].startsWith('BTC-')) {
-                            let coinName = obj["symbol"].replace("BTC-", '');
+                        if(obj["MarketName"].includes('BTC-')) {
+                            let coinName = obj["MarketName"].replace("BTC-", '');
                             if (!coin_prices[coinName]) coin_prices[coinName] = {};
                             coin_prices[coinName].bittrex = obj.Last;
                         }
@@ -173,71 +173,71 @@ let markets = [
 
     },
     
-//    {
-//		marketName: 'cryptopia',
-//		URL: 'https://www.cryptopia.co.nz/api/GetMarkets/BTC', //URL To Fetch API From.
-//		toBTCURL: false, //URL, if needed for an external bitcoin price api.
-//        pairURL : '',
-//        last: function (data, coin_prices) { //Get the last price of coins in JSON data
-//			return new Promise(function (res, rej) {
-//				try {
-//					for (let obj of data.Data) {
-//						if(obj["Label"].includes('/BTC')) {
-//							let coinName = obj["Label"].replace("/BTC", '');
-//							if (!coin_prices[coinName]) coin_prices[coinName] = {};
-//							coin_prices[coinName].cryptopia = obj.LastPrice;
-//                        }
-//                    }
-//                    res(coin_prices);
-//					
-//                }
-//                catch (err) {
-//                    console.log(err);
-//                    rej(err);
-//                }
-//
-//            })
-//		},
-//	},
-//    
-//    {
-//		marketName: 'bleutrade',
-//		URL: 'https://bleutrade.com/api/v2/public/getmarketsummaries', //URL To Fetch API From.
-//		toBTCURL: false, //URL, if needed for an external bitcoin price api.
-//        pairURL : '',
-//        last: function (data, coin_prices) { //Get the last price of coins in JSON data
-//			return new Promise(function (res, rej) {
-//				try {
-//					for (let obj of data.result) {
-//						if(obj["MarketName"].includes('_BTC')) {
-//							let coinName = obj["MarketName"].replace("_BTC", '');
-//							if (!coin_prices[coinName]) coin_prices[coinName] = {};
-//							coin_prices[coinName].bleutrade = obj.Last;
-//                        }
-//                    }
-//                    res(coin_prices);
-//					
-//                }
-//                catch (err) {
-//                    console.log(err);
-//                    rej(err);
-//                }
-//
-//            })
-//		},
-//	},
-//	
-//	{
+    {
+		marketName: 'cryptopia',
+		URL: 'https://www.cryptopia.co.nz/api/GetMarkets/BTC', //URL To Fetch API From.
+		toBTCURL: false, //URL, if needed for an external bitcoin price api.
+        pairURL : '',
+        last: function (data, coin_prices) { //Get the last price of coins in JSON data
+			return new Promise(function (res, rej) {
+				try {
+					for (let obj of data.Data) {
+						if(obj["Label"].includes('/BTC')) {
+							let coinName = obj["Label"].replace("/BTC", '');
+							if (!coin_prices[coinName]) coin_prices[coinName] = {};
+							coin_prices[coinName].cryptopia = obj.LastPrice;
+                        }
+                    }
+                    res(coin_prices);
+					
+                }
+                catch (err) {
+                    console.log(err);
+                    rej(err);
+                }
+
+            })
+		},
+	},
+    
+    {
+		marketName: 'bleutrade',
+		URL: 'https://bleutrade.com/api/v2/public/getmarketsummaries', //URL To Fetch API From.
+		toBTCURL: false, //URL, if needed for an external bitcoin price api.
+        pairURL : '',
+        last: function (data, coin_prices) { //Get the last price of coins in JSON data
+			return new Promise(function (res, rej) {
+				try {
+					for (let obj of data.result) {
+						if(obj["MarketName"].includes('_BTC')) {
+							let coinName = obj["MarketName"].replace("_BTC", '');
+							if (!coin_prices[coinName]) coin_prices[coinName] = {};
+							coin_prices[coinName].bleutrade = obj.Last;
+                        }
+                    }
+                    res(coin_prices);
+					
+                }
+                catch (err) {
+                    console.log(err);
+                    rej(err);
+                }
+
+            })
+		},
+	},
+	
+	{
 
         marketName: 'kraken', // kraken has no one size fits all market summery so each pair has to be entered as param in GET - will need to add new coins as they are added to exchange
-        URL: 'https://api.kraken.com/0/public/Ticker?pair=ADAXBT,DASHXBT,EOSXBT,GNOXBT,ETCXBT,ETHXBT,ICNXBT,LTCXBT,LUNAXBT,MLNXBT,REPXBT,XDGXBT,XLMXBT,XMRXBT,XRPXBT,ZECXBT', //URL To Fetch API From.
+        URL: 'https://api.kraken.com/0/public/Ticker?pair=DASHXBT,EOSXBT,GNOXBT,ETCXBT,ETHXBT,ICNXBT,LTCXBT,MLNXBT,REPXBT,XDGXBT,XLMXBT,XMRXBT,XRPXBT,ZECXBT', //URL To Fetch API From.
         toBTCURL: false, //URL, if needed for an external bitcoin price api.
         pairURL : '',
         last: function (data, coin_prices) { //Get the last price of coins in JSON data
             return new Promise(function (res, rej) {
                 try {
                     for (let key in data.result) {
-                        let arr = key.match(/ADA|DASH|EOS|GNO|ETC|ETH|ICN|LTC|LUNA|MLN|REP|XDG|XLM|XMR|XRP|ZEC/); // matching real names to weird kraken api coin pairs like "XETCXXBT" etc 
+                        let arr = key.match(/DASH|EOS|GNO|ETC|ETH|ICN|LTC|MLN|REP|XDG|XLM|XMR|XRP|ZEC/); // matching real names to weird kraken api coin pairs like "XETCXXBT" etc 
                         let name = key;
                         let matchedName = arr[0];
                         if (matchedName === "XDG") { //kraken calls DOGE "XDG" for whatever reason
