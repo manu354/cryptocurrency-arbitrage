@@ -64,17 +64,17 @@ let markets = [
     // },
     {
         marketName: 'bittrex',
-        URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
+        URL: 'https://api.bittrex.com/v3/markets/tickers',
         toBTCURL: false,
         pairURL : '',
         last: function (data, coin_prices) { //Where to find the last price of coin in JSON data
             return new Promise(function (res, rej) {
                 try {
-                    for (let obj of data.result) {
-                        if(obj["MarketName"].includes('BTC-')) {
-                            let coinName = obj["MarketName"].replace("BTC-", '');
+                    for (let obj of data) {
+                        if(obj["symbol"].includes('-BTC')) {
+                            let coinName = obj["symbol"].replace("-BTC", '');
                             if (!coin_prices[coinName]) coin_prices[coinName] = {};
-                            coin_prices[coinName].bittrex = obj.Last;
+                            coin_prices[coinName].bittrex = parseFloat(obj.lastTradeRate);
                         }
                     }
                     res(coin_prices);
